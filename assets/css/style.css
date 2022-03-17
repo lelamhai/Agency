@@ -25,7 +25,7 @@ body {
 	font-size: 16px;
 	background: #f5f5f5;
 }
-a, a:focus, a:hover { text-decoration: none; outline: 0; }
+a, a:focus, a:hover { text-decoration: none !important ; outline: 0; }
 
 /*
 ======================================
@@ -68,7 +68,7 @@ a, a:focus, a:hover { text-decoration: none; outline: 0; }
 .menu-main>ul>li>a { padding: 10px 0; display: block; color: #f66683; font-size: 16px; }
 
 .menu-main>ul>li>a img { vertical-align: initial; }
-.menu-main>ul>li>a:hover, .menu-main li.current-menu-item>a { background: #ffffff17; }
+.menu-main>ul>li>a:hover, .menu-main li.current-menu-item>a { background: #ffffff; }
 .menu-main>ul>li>a:after { background: transparent; content: ''; width: 0; height: 2px; position: absolute; bottom: 0; left: 0; right: 0; margin: 0 auto; -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); -webkit-transition: width 0.2s ease; -moz-transition: width 0.2s ease; -o-transition: width 0.2s ease; transition: width 0.2s ease; }
 .menu-main>ul>li:hover a:after, .menu-main li.current-menu-item > a:after { background: #f66683; width: 100%; }
 .menu-main ul li.menu-item-has-children:hover >ul.sub-menu { display: block; }
