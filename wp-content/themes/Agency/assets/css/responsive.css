@@ -1,0 +1,36 @@
+
+
+   @media only screen and (min-width: 995px) and (max-width: 1200px) {
+    .menu-main>ul>li>a {
+        font-size: 10px;
+    }
+
+    .header.header .item-menu span {
+        font-size: 10px;
+    }
+
+    .menu-main ul  {
+        padding-left: 0;
+    }
+
+    .h-custom-menu .col-10 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+
+@media only screen and (min-width: 375px) and (max-width: 995px) {
+    .h-custom-mobile {
+        display: none;
+    }
+
+    .h-custom-menu {
+        display: flex;
+        justify-content: center;
+    }
+
+    .container .h-custom-menu-mobile {
+        display: block !important;
+    }
+}
