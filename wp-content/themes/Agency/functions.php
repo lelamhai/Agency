@@ -2,7 +2,7 @@
 
 function agency_regsiter_styles()
 {
-    $version = "1.0.1";
+    $version = "1.0.2";
     
     // ------------------- css ----------------- \\
     // style css
@@ -36,12 +36,13 @@ add_action('wp_enqueue_scripts', 'agency_regsiter_styles');
  * Menu Locations
  */
 // define menu
-
 if (function_exists('wp_nav_menu')) {
     function agilsun_wp_my_menus()
     {
         register_nav_menus(array(
             'Main_menu' => __('Menu Chính', 'text_domain'),
+            'Category_menu' => __('Menu Chuyên Mục', 'text_domain'),
+            'Category_mobile_menu' => __('Menu Chuyên Mục Mobile', 'text_domain'),
             'Area_menu' => __('Menu Khu Vực', 'text_domain')
         ));
     }
@@ -95,6 +96,55 @@ function get_area_menu()
     ));
 }
 add_shortcode('area_menu', 'get_area_menu');
+
+// theme_location Category Menu
+function get_category_menu()
+{
+    wp_nav_menu(array(
+        'theme_location' => 'Category_menu',
+        'menu' => '',
+        'container' => '',
+        'container_class' => '',
+        'container_id' => '',
+        'menu_class' => '',
+        'menu_id' => '',
+        'echo' => true,
+        'fallback_cb' => '',
+        'before' => '',
+        'after' => '',
+        'items_wrap' => '%3$s',
+        'link_before'=>'<span class="item p-2 d-block h-custom-item"><i class="fab fa-gripfire"></i>', 
+        'link_after'=>'</span>',
+        'depth' => 0,
+        'walker' => ''
+    ));
+}
+add_shortcode('category_menu', 'get_category_menu');
+
+// theme_location Category Menu Mobile
+function get_category_mobile_menu()
+{
+    wp_nav_menu(array(
+        'theme_location' => 'Category_mobile_menu',
+        'menu' => '',
+        'container' => '',
+        'container_class' => '',
+        'container_id' => '',
+        'menu_class' => '',
+        'menu_id' => '',
+        'echo' => true,
+        'fallback_cb' => '',
+        'before' => '',
+        'after' => '',
+        'items_wrap' => '%3$s',
+        'link_before'=>'<i class="fas fa-bell h-custom-fa-bell"></i>', 
+        'link_after'=>'',
+        'depth' => 0,
+        'walker' => ''
+    ));
+}
+add_shortcode('category_mobile_menu', 'get_category_mobile_menu');
+
 
 
 function get_sub_menu()

@@ -302,3 +302,15 @@ footer.footer ul.category li span {
 	display: block;
 	margin-top: 0.8em;
 }
+
+.h-custom-item {
+	color: #212529;
+}
+
+.h-custom-item .fa-gripfire {
+	padding-right: 10px;
+}
+
+.h-custom-fa-bell {
+	padding-right: 10px;
+}

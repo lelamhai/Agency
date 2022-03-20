@@ -25,6 +25,9 @@
                     </div>
                     <div class="menu-chuyen-muc-container">
                         <ul id="accordion-responsive" class="accordion-responsive">
+                                <?php
+                                    do_shortcode('[category_mobile_menu]');
+                                ?>
                             <!-- <li id="menu-item-35" class="menu-item menu-item-type-taxonomy menu-item-object-category">
                                 <a href="https://diadiemdanang.vn/goc-an-uong/quan-an-chay/"><i class="fas fa-bell"></i> Quán Ăn Chay</a>
                             </li>
@@ -105,33 +108,9 @@
                             <div class="col-md-3">
                                 <div class="bg-light">
                                     <ul>
-                                        <li>
-                                            <span class="item p-2 d-block" id="quan-an-chay" data-id="13"><i class="fab fa-gripfire"></i> Quán Ăn Chay</span>
-                                        </li>
-                                        <li>
-                                            <span class="item p-2 d-block" id="quan-an-vat" data-id="14"><i class="fab fa-gripfire"></i> Quán Ăn Vặt</span>
-                                        </li>
-                                        <li>
-                                            <span class="item p-2 d-block" id="quan-bar" data-id="15"><i class="fab fa-gripfire"></i> Quán Bar</span>
-                                        </li>
-                                        <li>
-                                            <span class="item p-2 d-block" id="quan-buffet-nuong-lau" data-id="46"><i class="fab fa-gripfire"></i> Quán Buffet Nướng - Lẩu</span>
-                                        </li>
-                                        <li>
-                                            <span class="item p-2 d-block" id="quan-cafe" data-id="3"><i class="fab fa-gripfire"></i> Quán Cafe</span>
-                                        </li>
-                                        <li>
-                                            <span class="item p-2 d-block" id="quan-com" data-id="4"><i class="fab fa-gripfire"></i> Quán Cơm</span>
-                                        </li>
-                                        <li>
-                                            <span class="item p-2 d-block" id="quan-nhau" data-id="12"><i class="fab fa-gripfire"></i> Quán Nhậu</span>
-                                        </li>
-                                        <li>
-                                            <span class="item p-2 d-block" id="quan-nuong" data-id="53"><i class="fab fa-gripfire"></i> Quán Nướng</span>
-                                        </li>
-                                        <li>
-                                            <span class="item p-2 d-block" id="quan-tra-sua" data-id="5"><i class="fab fa-gripfire"></i> Quán Trà Sữa</span>
-                                        </li>
+                                        <?php
+                                            do_shortcode('[category_menu]');
+                                        ?>
                                     </ul>
                                 </div>
                             </div>
@@ -263,137 +242,6 @@
                                                         <a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/ngap-tran-sac-xuan-cung-nice-home-coffee/"> </a>
                                                         <div class="info">
                                                             <a class="post-title text-dark" href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/ngap-tran-sac-xuan-cung-nice-home-coffee/">Ngập tràn sắc xuân cùng Nice Home Coffee</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="bg-white m-1">
-                                                    <div class="item mt-1 mb-1 post-8357 post type-post status-publish format-standard has-post-thumbnail hentry category-quan-cafe">
-                                                        <a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/ca-phe-hien-quan-cafe-moi-toanh-o-ngoai-o-da-nang-xinh-dep-quen-loi-ve/">
-                                                            <img
-                                                                width="850"
-                                                                height="450"
-                                                                src="https://diadiemdanang.vn/wp-content/uploads/2022/01/ca-phe-hien-quan-cafe-moi-toanh-o-ngoai-o-da-nang-xinh-dep-quen-loi-ve-3.png"
-                                                                class="img-fluid wp-post-image"
-                                                                alt=""
-                                                                loading="lazy"
-                                                                srcset="
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2022/01/ca-phe-hien-quan-cafe-moi-toanh-o-ngoai-o-da-nang-xinh-dep-quen-loi-ve-3.png         850w,
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2022/01/ca-phe-hien-quan-cafe-moi-toanh-o-ngoai-o-da-nang-xinh-dep-quen-loi-ve-3-768x407.png 768w
-                                                                "
-                                                                sizes="(max-width: 850px) 100vw, 850px"
-                                                            />
-                                                        </a>
-                                                        <div class="info">
-                                                            <a class="post-title text-dark" href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/ca-phe-hien-quan-cafe-moi-toanh-o-ngoai-o-da-nang-xinh-dep-quen-loi-ve/">
-                                                                Cà phê Hiên – Quán cafe mới toanh ở ngoại ô Đà Nẵng, xinh đẹp...
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="bg-white m-1">
-                                                    <div class="item mt-1 mb-1 post-8340 post type-post status-publish format-standard has-post-thumbnail hentry category-quan-cafe">
-                                                        <a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/chic-chillax-me-man-dia-diem-check-in-moi-cuc-chill-tai-hoi-an/">
-                                                            <img
-                                                                width="2048"
-                                                                height="1364"
-                                                                src="https://diadiemdanang.vn/wp-content/uploads/2022/01/chic-chillax-me-man-dia-diem-check-in-moi-cuc-chill-tai-hoi-an-3.jpg"
-                                                                class="img-fluid wp-post-image"
-                                                                alt="Nguồn ảnh: Duy Hậu | fanpage Người Hội An"
-                                                                loading="lazy"
-                                                                srcset="
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2022/01/chic-chillax-me-man-dia-diem-check-in-moi-cuc-chill-tai-hoi-an-3.jpg           2048w,
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2022/01/chic-chillax-me-man-dia-diem-check-in-moi-cuc-chill-tai-hoi-an-3-768x512.jpg    768w,
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2022/01/chic-chillax-me-man-dia-diem-check-in-moi-cuc-chill-tai-hoi-an-3-1536x1023.jpg 1536w
-                                                                "
-                                                                sizes="(max-width: 2048px) 100vw, 2048px"
-                                                            />
-                                                        </a>
-                                                        <div class="info">
-                                                            <a class="post-title text-dark" href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/chic-chillax-me-man-dia-diem-check-in-moi-cuc-chill-tai-hoi-an/">
-                                                                Chic Chillax – Mê mẩn địa điểm check-in mới cực chill tại Hội An
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="bg-white m-1">
-                                                    <div class="item mt-1 mb-1 post-8317 post type-post status-publish format-standard has-post-thumbnail hentry category-quan-cafe province-hai-chau">
-                                                        <a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/ge-cafe-chon-ly-tuong-de-thu-gian-cho-nhung-ngay-cuoi-nam/">
-                                                            <img
-                                                                width="850"
-                                                                height="450"
-                                                                src="https://diadiemdanang.vn/wp-content/uploads/2021/12/ge-cafe-chon-ly-tuong-de-thu-gian-cho-nhung-ngay-cuoi-nam-5-3.jpg"
-                                                                class="img-fluid wp-post-image"
-                                                                alt=""
-                                                                loading="lazy"
-                                                                srcset="
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2021/12/ge-cafe-chon-ly-tuong-de-thu-gian-cho-nhung-ngay-cuoi-nam-5-3.jpg         850w,
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2021/12/ge-cafe-chon-ly-tuong-de-thu-gian-cho-nhung-ngay-cuoi-nam-5-3-768x407.jpg 768w
-                                                                "
-                                                                sizes="(max-width: 850px) 100vw, 850px"
-                                                            />
-                                                        </a>
-                                                        <div class="info">
-                                                            <a class="post-title text-dark" href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/ge-cafe-chon-ly-tuong-de-thu-gian-cho-nhung-ngay-cuoi-nam/">
-                                                                Gé Cafe – Chốn lý tưởng để thư giãn cho những ngày cuối năm
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="bg-white m-1">
-                                                    <div class="item mt-1 mb-1 post-8300 post type-post status-publish format-standard has-post-thumbnail hentry category-quan-cafe province-hai-chau">
-                                                        <a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/cafeholic-quan-cafe-co-khong-gian-sieu-xinh-ngap-tran-su-am-cung/">
-                                                            <img
-                                                                width="2048"
-                                                                height="1366"
-                                                                src="https://diadiemdanang.vn/wp-content/uploads/2021/12/cafeholic-quan-cafe-co-khong-gian-sieu-xinh-ngap-tran-su-am-cung-3-1.jpg"
-                                                                class="img-fluid wp-post-image"
-                                                                alt=""
-                                                                loading="lazy"
-                                                                srcset="
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2021/12/cafeholic-quan-cafe-co-khong-gian-sieu-xinh-ngap-tran-su-am-cung-3-1.jpg           2048w,
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2021/12/cafeholic-quan-cafe-co-khong-gian-sieu-xinh-ngap-tran-su-am-cung-3-1-768x512.jpg    768w,
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2021/12/cafeholic-quan-cafe-co-khong-gian-sieu-xinh-ngap-tran-su-am-cung-3-1-1536x1025.jpg 1536w
-                                                                "
-                                                                sizes="(max-width: 2048px) 100vw, 2048px"
-                                                            />
-                                                        </a>
-                                                        <div class="info">
-                                                            <a class="post-title text-dark" href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/cafeholic-quan-cafe-co-khong-gian-sieu-xinh-ngap-tran-su-am-cung/">
-                                                                CAFEHOLIC – Quán cafe có không gian siêu xinh, ngập tràn sự ấm cúng
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="bg-white m-1">
-                                                    <div class="item mt-1 mb-1 post-8283 post type-post status-publish format-standard has-post-thumbnail hentry category-cam-nang">
-                                                        <a href="https://diadiemdanang.vn/cam-nang/da-nang-diem-den-ly-tuong-cua-xu-huong-workation/">
-                                                            <img
-                                                                width="2048"
-                                                                height="1365"
-                                                                src="https://diadiemdanang.vn/wp-content/uploads/2021/12/6.jpg"
-                                                                class="img-fluid wp-post-image"
-                                                                alt=""
-                                                                loading="lazy"
-                                                                srcset="
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2021/12/6.jpg           2048w,
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2021/12/6-768x512.jpg    768w,
-                                                                    https://diadiemdanang.vn/wp-content/uploads/2021/12/6-1536x1024.jpg 1536w
-                                                                "
-                                                                sizes="(max-width: 2048px) 100vw, 2048px"
-                                                            />
-                                                        </a>
-                                                        <div class="info">
-                                                            <a class="post-title text-dark" href="https://diadiemdanang.vn/cam-nang/da-nang-diem-den-ly-tuong-cua-xu-huong-workation/">Đà Nẵng, điểm đến lý tưởng của xu hướng “Workation”</a>
                                                         </div>
                                                     </div>
                                                 </div>
