@@ -109,7 +109,7 @@
                                 <div class="bg-light">
                                     <ul>
                                         <?php
-                                            do_shortcode('[category_menu]');
+                                            do_shortcode('[category_desktop_menu]');
                                         ?>
                                     </ul>
                                 </div>

@@ -1,5 +1,4 @@
- <?php
-
+<?php
 function agency_regsiter_styles()
 {
     $version = "1.0.2";
@@ -31,22 +30,23 @@ function agency_regsiter_styles()
 add_action('wp_enqueue_scripts', 'agency_regsiter_styles');
 
 
+
 // ============ MENU =========== \\
 /**
  * Menu Locations
  */
-// define menu
 if (function_exists('wp_nav_menu')) {
-    function agilsun_wp_my_menus()
+    function agency_wp_my_menus()
     {
         register_nav_menus(array(
             'Main_menu' => __('Menu Chính', 'text_domain'),
-            'Category_menu' => __('Menu Chuyên Mục', 'text_domain'),
-            'Category_mobile_menu' => __('Menu Chuyên Mục Mobile', 'text_domain'),
-            'Area_menu' => __('Menu Khu Vực', 'text_domain')
+            'Category_desktop_menu' => __('Chuyên Mục Desktop', 'text_domain'),
+            'Category_mobile_menu' => __('Chuyên Mục Mobile', 'text_domain'),
+            'Category_search_menu' => __('Chuyên Mục Search', 'text_domain'),
+            'Area_menu' => __('Khu Vực', 'text_domain')
         ));
     }
-    add_action('init', 'agilsun_wp_my_menus');
+    add_action('init', 'agency_wp_my_menus');
 }
 
 // theme_location Main Menu
@@ -97,11 +97,12 @@ function get_area_menu()
 }
 add_shortcode('area_menu', 'get_area_menu');
 
-// theme_location Category Menu
-function get_category_menu()
+
+// theme_location Category Menu Desktop
+function get_category_desktop_menu()
 {
     wp_nav_menu(array(
-        'theme_location' => 'Category_menu',
+        'theme_location' => 'Category_desktop_menu',
         'menu' => '',
         'container' => '',
         'container_class' => '',
@@ -119,7 +120,8 @@ function get_category_menu()
         'walker' => ''
     ));
 }
-add_shortcode('category_menu', 'get_category_menu');
+add_shortcode('category_desktop_menu', 'get_category_desktop_menu');
+
 
 // theme_location Category Menu Mobile
 function get_category_mobile_menu()
@@ -147,25 +149,4 @@ add_shortcode('category_mobile_menu', 'get_category_mobile_menu');
 
 
 
-function get_sub_menu()
-{
-    wp_nav_menu(array(
-        'theme_location' => 'sub_menu',
-        'menu' => '',
-        'container' => '',
-        'container_class' => '',
-        'container_id' => '',
-        'menu_class' => '',
-        'menu_id' => '',
-        'echo' => true,
-        'fallback_cb' => '',
-        'before' => '',
-        'after' => '',
-        'link_before' => '',
-        'link_after' => '',
-        'items_wrap' => '%3$s',
-        'depth' => 0,
-        'walker' => ''
-    ));
-}
-add_shortcode('sub_menu', 'get_sub_menu'); 
+?>
