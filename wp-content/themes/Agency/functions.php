@@ -7,6 +7,7 @@ define('AREA_MENU', 'area_menu');
 define('CATEGORY_MENU', 'category_menu');
 define('CATEGORY_SEARCH', 'category_search');
 define('TAGS', 'tags');
+define('TOP_ADDRESS_HOME', 'top_address_home');
 
 
 /*
@@ -47,7 +48,7 @@ add_action('wp_enqueue_scripts', 'agency_regsiter_styles');
  * Setup Images Size
  */
 function agency_imagesize() {
-    add_theme_support('post-thumbnails'); // dich vu size thumbnail
+    add_theme_support('post-thumbnails');
     add_image_size('image-post-news', 555, 450, true);
     add_image_size('image-post-news', 278, 210, true);
   
@@ -68,6 +69,7 @@ if (function_exists('wp_nav_menu')) {
             CATEGORY_MENU => __('Chuyên mục', 'text_domain'),
             CATEGORY_SEARCH => __('Chuyên mục dưới khung search', 'text_domain'),
             TAGS => __('Tags', 'text_domain'),
+            TOP_ADDRESS_HOME => __('Điểm đến hàng đầu trang chủ', 'text_domain')
         ));
     }
     add_action('init', 'agency_wp_my_menus');
@@ -249,4 +251,311 @@ function ui_filter_category()
 }
 add_shortcode('ui_filter_category', 'ui_filter_category');
 
+
+// ====== Home ======= \\
+function ui_top_category_0()
+{
+    $menu_name = TOP_ADDRESS_HOME;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        
+        $index = 0;
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+            $url =  $menu_item->url;
+            $term = get_term_by('id', $id, 'category');
+            $image = get_field('thumbnail_category',  $term);
+            $address = get_field('address_category',  $term);
+            $description = $term->description;
+            if($index == 0)
+            {
+                ?>
+                                <div class="col-12">
+                                    <div class="item">
+                                        <div class="img">
+                                            <img src="<?php echo $image?>" alt="<?php echo $title?>" class="img-fluid w-100" />
+                                        </div>
+                                        <div class="text mt-4">
+                                            <div class="pl-3 top">
+                                                <strong class="h4"><?php echo $title?></strong>
+                                                <span class="d-block">Có <?php echo $address?> địa điểm</span>
+                                            </div>
+                                            <div class="pl-3">
+                                                <span class="d-block mt-2 mb-2"><?php echo $description?></span>
+                                                <a href="<?php echo $url?>">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                <?php
+
+                break;
+            }
+            $index ++;
+        }
+    }
+}
+add_shortcode('ui_top_category_0', 'ui_top_category_0');
+
+function ui_top_category_1()
+{
+    $menu_name = TOP_ADDRESS_HOME;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        
+        $index = 0;
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+            $url =  $menu_item->url;
+            $term = get_term_by('id', $id, 'category');
+            $image = get_field('thumbnail_category',  $term);
+            $address = get_field('address_category',  $term);
+            $description = $term->description;
+            if($index == 1)
+            {
+                ?>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="item">
+                                        <div class="img">
+                                            <img src="<?php echo $image?>" alt="<?php echo $title?>" class="img-fluid w-100" />
+                                        </div>
+                                        <div class="text mt-4">
+                                            <div class="pl-3 top">
+                                                <strong class="h4"><?php echo $title?></strong>
+                                                <span class="d-block">Có <?php echo $address?> địa điểm</span>
+                                            </div>
+                                            <div class="pl-3 mt-3">
+                                                <a href="<?php echo $url?>">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                <?php
+
+                break;
+            }
+            $index ++;
+        }
+    }
+}
+add_shortcode('ui_top_category_1', 'ui_top_category_1');
+
+
+function ui_top_category_2()
+{
+    $menu_name = TOP_ADDRESS_HOME;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        
+        $index = 0;
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+            $url =  $menu_item->url;
+            $term = get_term_by('id', $id, 'category');
+            $image = get_field('thumbnail_category',  $term);
+            $address = get_field('address_category',  $term);
+            $description = $term->description;
+            if($index == 2)
+            {
+                ?>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="item">
+                                        <div class="img">
+                                            <img src="<?php echo $image?>" alt="<?php echo $title?>" class="img-fluid w-100" />
+                                        </div>
+                                        <div class="text mt-4">
+                                            <div class="pl-3 top">
+                                                <strong class="h4"><?php echo $title?></strong>
+                                                <span class="d-block">Có <?php echo $address?> địa điểm</span>
+                                            </div>
+                                            <div class="pl-3 mt-3">
+                                                <a href="<?php echo $url?>">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                <?php
+
+                break;
+            }
+            $index ++;
+        }
+    }
+}
+add_shortcode('ui_top_category_2', 'ui_top_category_2');
+
+
+function ui_top_category_3()
+{
+    $menu_name = TOP_ADDRESS_HOME;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        
+        $index = 0;
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+            $url =  $menu_item->url;
+            $term = get_term_by('id', $id, 'category');
+            $image = get_field('thumbnail_category',  $term);
+            $address = get_field('address_category',  $term);
+            $description = $term->description;
+            if($index == 3)
+            {
+                ?>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="item">
+                                        <div class="img">
+                                            <img src="<?php echo $image?>" alt="<?php echo $title?>" class="img-fluid w-100" />
+                                        </div>
+                                        <div class="text mt-4">
+                                            <div class="pl-3 top">
+                                                <strong class="h4"><?php echo $title?></strong>
+                                                <span class="d-block">Có <?php echo $address?> địa điểm</span>
+                                            </div>
+                                            <div class="pl-3 mt-3">
+                                                <a href="<?php echo $url?>">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                <?php
+
+                break;
+            }
+            $index ++;
+        }
+    }
+}
+add_shortcode('ui_top_category_3', 'ui_top_category_3');
+
+
+function ui_top_category_4()
+{
+    $menu_name = TOP_ADDRESS_HOME;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        
+        $index = 0;
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+            $url =  $menu_item->url;
+            $term = get_term_by('id', $id, 'category');
+            $image = get_field('thumbnail_category',  $term);
+            $address = get_field('address_category',  $term);
+            $description = $term->description;
+            if($index == 4)
+            {
+                ?>
+
+
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="item">
+                                        <div class="img">
+                                            <img src="<?php echo $image?>" alt="<?php echo $title?>" class="img-fluid w-100" />
+                                        </div>
+                                        <div class="text mt-4">
+                                            <div class="pl-3 top">
+                                            <strong class="h4"><?php echo $title?></strong>
+                                                <span class="d-block">Có <?php echo $address?> địa điểm</span>
+                                            </div>
+                                            <div class="pl-3 mt-3">
+                                                <a href="<?php echo $url?>">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                <?php
+
+                break;
+            }
+            $index ++;
+        }
+    }
+}
+add_shortcode('ui_top_category_4', 'ui_top_category_4');
+
+
+function ui_top_category_5()
+{
+    $menu_name = TOP_ADDRESS_HOME;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        
+        $index = 0;
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+            $url =  $menu_item->url;
+            $term = get_term_by('id', $id, 'category');
+            $image = get_field('thumbnail_category',  $term);
+            $address = get_field('address_category',  $term);
+            $description = $term->description;
+            if($index == 5)
+            {
+                ?>
+                                <div class="col-12">
+                                    <div class="item">
+                                        <div class="img">
+                                        <img src="<?php echo $image?>" alt="<?php echo $title?>" class="img-fluid w-100" />
+                                        </div>
+                                        <div class="text mt-4">
+                                            <div class="pl-3 top">
+                                                <strong class="h4"><?php echo $title?></strong>
+                                                <span class="d-block">Có <?php echo $address?> địa điểm</span>
+                                            </div>
+                                            <div class="pl-3">
+                                                <span class="d-block mt-2 mb-2"><?php echo $description?></span>
+                                                <a href="<?php echo $url?>">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                <?php
+
+                break;
+            }
+            $index ++;
+        }
+    }
+}
+add_shortcode('ui_top_category_5', 'ui_top_category_5');
+
+
+
+// ====== Footer ======= \\
+function ui_category_footer()
+{
+    $menu_name = CATEGORY_MENU;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+            $url =  $menu_item->url;
+            $category = get_category($id);
+            $count = $category->category_count;     
+
+            ?>
+                <li class="cat-item cat-item-13">
+                    <a href="<?php echo $url?>" >
+                        <?php echo $title; ?> <span><?php echo $count?></span>
+                    </a>
+                </li>
+            <?php
+        }
+    }
+}
+add_shortcode('ui_category_footer', 'ui_category_footer');
 ?>

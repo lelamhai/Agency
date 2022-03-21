@@ -209,12 +209,12 @@
                     <div class="col-lg-4">
                         <h4>Mục xem nhiều</h4>
                         <ul class="category m-0 p-0 list-unstyled">
-                            <li class="cat-item cat-item-13">
-                                <a
-                                    href="https://diadiemdanang.vn/goc-an-uong/quan-an-chay/"
-                                    title="Ngày nay ăn chay không chỉ gói gọn trong giới hạn của tôn giáo hay tín ngưỡng. Trong khi con người quan tâm nhiều hơn đến sức khỏe và hàm lượng các chất có trong thức ăn. Ăn chay trở thành một phương pháp tốt được ưa chuộng. Để có những bữa ăn chay ngon và an toàn, diadiemdanang.vn mang đến bạn 1001 quán ăn chay Đà Nẵng ngon nhất và uy tín nhất.
-                                    Danh sách các quán ăn chay phủ khắp trên địa bàn thành phố Đà Nẵng. Đảm bảo bạn luôn tìm thấy quán ăn gần mình nhất. Bao gồm những quán ăn nổi tiếng với thực khách bốn phương. Và cả những quán ăn ẩn mình trong những con hẻm nhỏ với các món gia truyền hấp dẫn và an toàn."
-                                >
+                            <?php
+                                do_shortcode('[ui_category_footer]');
+                            ?>
+
+                            <!-- <li class="cat-item cat-item-13">
+                                <a href="https://diadiemdanang.vn/goc-an-uong/quan-an-chay/" >
                                     Quán Ăn Chay <span>6</span>
                                 </a>
                             </li>
@@ -284,7 +284,7 @@
                                 >
                                     Quán Trà Sữa <span>19</span>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>

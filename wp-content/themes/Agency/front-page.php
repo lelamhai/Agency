@@ -1,6 +1,28 @@
 <?php
 get_header();
 ?>
+
+<?php
+//  $menu_name = 'top_address_home';
+//  if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+//      $menu = wp_get_nav_menu_object($locations[$menu_name]);
+//      $menu_items = wp_get_nav_menu_items($menu->term_id);
+     
+//      foreach ((array) $menu_items as $key => $menu_item) {
+//          var_dump($menu_item);exit();
+//      }
+//  }
+
+?>
+
+<?php 
+// $category = get_category( 2 );
+// $image = get_field('address_category', $category->slug);
+// var_dump($image);
+
+?>
+
+
         <div class="wrap mt-4">
             <div class="container">
                 <div class="text-center mb-4">
@@ -15,108 +37,29 @@ get_header();
                     <div class="row no-gutters">
                         <div class="col-lg-6">
                             <div class="row no-gutters">
-                                <div class="col-12">
-                                    <div class="item">
-                                        <div class="img">
-                                            <img src="https://diadiemdanang.vn/wp-content/themes/top10brand/assets/images/hai-chau.jpeg" alt="Hải Châu" class="img-fluid w-100" />
-                                        </div>
-                                        <div class="text mt-4">
-                                            <div class="pl-3 top">
-                                                <strong class="h4">Hải Châu</strong>
-                                                <span class="d-block">Có 6.801 địa điểm</span>
-                                            </div>
-                                            <div class="pl-3">
-                                                <span class="d-block mt-2 mb-2">Là trung tâm thành phố sầm uất, quận Hải Châu đón bao bước chân đến khám phá</span>
-                                                <a href="quan/hai-chau">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="item">
-                                        <div class="img">
-                                            <img src="https://diadiemdanang.vn/wp-content/themes/top10brand/assets/images/cam-le.jpg" alt="Cẩm lệ" class="img-fluid w-100" />
-                                        </div>
-                                        <div class="text mt-4">
-                                            <div class="pl-3 top">
-                                                <strong class="h4">Cẩm lệ</strong>
-                                                <span class="d-block">Có 4.432 địa điểm</span>
-                                            </div>
-                                            <div class="pl-3 mt-3">
-                                                <a href="quan/cam-le/">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="item">
-                                        <div class="img">
-                                            <img src="https://diadiemdanang.vn/wp-content/themes/top10brand/assets/images/lien-chieu.jpg" alt="Liên Chiểu" class="img-fluid w-100" />
-                                        </div>
-                                        <div class="text mt-4">
-                                            <div class="pl-3 top">
-                                                <strong class="h4">Liên chiểu</strong>
-                                                <span class="d-block">Có 5.231 địa điểm</span>
-                                            </div>
-                                            <div class="pl-3 mt-3">
-                                                <a href="quan/lien-chieu/">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php
+                                    do_shortcode('[ui_top_category_0]');
+                                ?>
+                                 <?php
+                                    do_shortcode('[ui_top_category_1]');
+                                ?>
+                                <?php
+                                    do_shortcode('[ui_top_category_2]');
+                                ?>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="row no-gutters">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="item">
-                                        <div class="img">
-                                            <img src="https://diadiemdanang.vn/wp-content/themes/top10brand/assets/images/thanh-khe.jpg" alt="Thanh khê" class="img-fluid w-100" />
-                                        </div>
-                                        <div class="text mt-4">
-                                            <div class="pl-3 top">
-                                                <strong class="h4">Thanh khê</strong>
-                                                <span class="d-block">Có 3.301 địa điểm</span>
-                                            </div>
-                                            <div class="pl-3 mt-3">
-                                                <a href="quan/thanh-khe/">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="item">
-                                        <div class="img">
-                                            <img src="https://diadiemdanang.vn/wp-content/themes/top10brand/assets/images/son-tra.jpg" alt="Sơn Trà" class="img-fluid w-100" />
-                                        </div>
-                                        <div class="text mt-4">
-                                            <div class="pl-3 top">
-                                                <strong class="h4">Sơn Trà</strong>
-                                                <span class="d-block">Có 3.802 địa điểm</span>
-                                            </div>
-                                            <div class="pl-3 mt-3">
-                                                <a href="quan/son-tra/">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="item">
-                                        <div class="img">
-                                            <img src="https://diadiemdanang.vn/wp-content/themes/top10brand/assets/images/ngu-hanh-son.jpg" alt="Ngũ hành sơn" class="img-fluid w-100" />
-                                        </div>
-                                        <div class="text mt-4">
-                                            <div class="pl-3 top">
-                                                <strong class="h4">Ngũ hành sơn</strong>
-                                                <span class="d-block">Có 2.801 địa điểm</span>
-                                            </div>
-                                            <div class="pl-3">
-                                                <span class="d-block mt-2 mb-2">Ngũ Hành Sơn hay núi Non Nước là tên của một danh thắng gồm 6 ngọn núi đá vôi nhô lên trên một bãi cát ven biển</span>
-                                                <a href="quan/ngu-hanh-son/">Khám phá ngay <i class="far fa-arrow-alt-circle-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                <?php
+                                    do_shortcode('[ui_top_category_3]');
+                                ?>
+                                <?php
+                                    do_shortcode('[ui_top_category_4]');
+                                ?>
+                                <?php
+                                    do_shortcode('[ui_top_category_5]');
+                                ?>
                             </div>
                         </div>
                     </div>
