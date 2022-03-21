@@ -6,6 +6,7 @@ define('MAIN_MENU', 'main_menu');
 define('AREA_MENU', 'area_menu');
 define('CATEGORY_MENU', 'category_menu');
 define('CATEGORY_SEARCH', 'category_search');
+define('TAGS', 'tags');
 
 
 /*
@@ -42,6 +43,18 @@ function agency_regsiter_styles()
 add_action('wp_enqueue_scripts', 'agency_regsiter_styles');
 
 
+/**
+ * Setup Images Size
+ */
+function agency_imagesize() {
+    add_theme_support('post-thumbnails'); // dich vu size thumbnail
+    add_image_size('image-post-news', 555, 450, true);
+    add_image_size('image-post-news', 278, 210, true);
+  
+}
+add_action('after_setup_theme', 'agency_imagesize');
+
+
 
 /**
  * Menu Locations
@@ -53,7 +66,8 @@ if (function_exists('wp_nav_menu')) {
             MAIN_MENU => __('Menu Chính', 'text_domain'),
             AREA_MENU => __('Khu Vực', 'text_domain'),
             CATEGORY_MENU => __('Chuyên mục', 'text_domain'),
-            CATEGORY_SEARCH => __('Chuyên mục dưới khung search', 'text_domain')
+            CATEGORY_SEARCH => __('Chuyên mục dưới khung search', 'text_domain'),
+            TAGS => __('Tags', 'text_domain'),
         ));
     }
     add_action('init', 'agency_wp_my_menus');
@@ -178,7 +192,61 @@ function ui_category_search()
 }
 add_shortcode('ui_category_search', 'ui_category_search');
 
+function ui_tags()
+{
+    $menu_name = TAGS;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $url =  $menu_item->url;
+            ?>
+                <li class="cat-item cat-item-26"><a href="<?php echo $url?>"><?php echo $title?></a></li>
+            <?php
+        }
+    }
+}
+add_shortcode('ui_tags', 'ui_tags');
 
 
+// ====== Filter ======= \\
+function ui_filter_area()
+{
+    $menu_name = AREA_MENU;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+            ?>
+                <option value="<?php echo $id?>"><?php echo  $title?></option>
+            <?php
+        }
+    }
+}
+add_shortcode('ui_filter_area', 'ui_filter_area');
+
+
+function ui_filter_category()
+{
+    $menu_name = CATEGORY_MENU;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+            ?>
+                <option value="<?php echo $id?>"><?php echo  $title?></option>
+            <?php
+        }
+    }
+}
+add_shortcode('ui_filter_category', 'ui_filter_category');
 
 ?>

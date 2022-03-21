@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="bg-white p-2">
                     <span>
-                        <span><a href="https://diadiemdanang.vn/">Trang chủ</a> » <span class="breadcrumb_last" aria-current="page">Cẩm Nang</span></span>
+                        <span><a href="<?php echo get_home_url(); ?>">Trang chủ</a> » <span class="breadcrumb_last" aria-current="page">Cẩm Nang</span></span>
                     </span>
                     <h1 class="h1 mt-2">Cẩm Nang</h1>
                 </div>
