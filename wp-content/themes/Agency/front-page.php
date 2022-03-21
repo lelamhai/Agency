@@ -1,25 +1,6 @@
-
 <?php
-    get_header();
+get_header();
 ?>
-<?php 
-//  $menu_name = 'Category_desktop_menu'; 
-
-//  if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_name ] ) ) {
-//  $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-
-//  $menu_items = wp_get_nav_menu_items($menu->term_id);
-
-
-//  foreach ( (array) $menu_items as $key => $menu_item ) {
-//      $title = $menu_item->title;
-//      echo $title;
-//  }
-//  }
-
-
-?>
-
         <div class="wrap mt-4">
             <div class="container">
                 <div class="text-center mb-4">
@@ -143,5 +124,5 @@
             </div>
         </div>
 <?php
-    get_footer();
-?>       
+get_footer();
+?>      

@@ -26,29 +26,8 @@
                     <div class="menu-chuyen-muc-container">
                         <ul id="accordion-responsive" class="accordion-responsive">
                                 <?php
-                                    do_shortcode('[category_mobile_menu]');
+                                    do_shortcode('[catetory_menu]');
                                 ?>
-                            <!-- <li id="menu-item-35" class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                                <a href="https://diadiemdanang.vn/goc-an-uong/quan-an-chay/"><i class="fas fa-bell"></i> Quán Ăn Chay</a>
-                            </li>
-                            <li id="menu-item-36" class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                                <a href="https://diadiemdanang.vn/goc-an-uong/quan-an-vat/"><i class="fas fa-bell"></i> Quán Ăn Vặt</a>
-                            </li>
-                            <li id="menu-item-37" class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                                <a href="https://diadiemdanang.vn/goc-an-uong/quan-bar/"><i class="fas fa-bell"></i> Quán Bar</a>
-                            </li>
-                            <li id="menu-item-38" class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                                <a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/"><i class="fas fa-bell"></i> Quán Cafe</a>
-                            </li>
-                            <li id="menu-item-39" class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                                <a href="https://diadiemdanang.vn/goc-an-uong/quan-com/"><i class="fas fa-bell"></i> Quán Cơm</a>
-                            </li>
-                            <li id="menu-item-40" class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                                <a href="https://diadiemdanang.vn/goc-an-uong/quan-nhau/"><i class="fas fa-bell"></i> Quán Nhậu</a>
-                            </li>
-                            <li id="menu-item-41" class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                                <a href="https://diadiemdanang.vn/goc-an-uong/quan-tra-sua/"><i class="fas fa-bell"></i> Quán Trà Sữa</a>
-                            </li> -->
                         </ul>
                     </div>
                     <div class="utilities">
@@ -59,7 +38,7 @@
                         </ul>
                     </div>
                     <div class="text-center pt-3">
-                        <a class="btn btn-outline-danger" href="tel:0934908070"><i class="fas fa-mobile-alt"></i> Hotline</a>
+                        <a class="btn btn-outline-danger" href="tel:0968254710"><i class="fas fa-mobile-alt"></i> Hotline</a>
                         <a class="btn btn-outline-primary" href=""><i class="fab fa-facebook-messenger"></i> Messenger</a>
                     </div>
                 </nav>
@@ -109,7 +88,7 @@
                                 <div class="bg-light">
                                     <ul>
                                         <?php
-                                            do_shortcode('[category_desktop_menu]');
+                                            do_shortcode('[ui_category_desktop]');
                                         ?>
                                     </ul>
                                 </div>
@@ -277,24 +256,9 @@
                                 </form>
                             </div>
                             <div class="owl-slider owl-carousel owl-theme">
-                                <div class="item">
-                                    <a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/">Quán Cafe</a>
-                                </div>
-                                <div class="item">
-                                    <a href="https://diadiemdanang.vn/goc-an-uong/quan-tra-sua/">Quán Trà Sữa</a>
-                                </div>
-                                <div class="item">
-                                    <a href="https://diadiemdanang.vn/goc-an-uong/quan-com/">Quán Cơm</a>
-                                </div>
-                                <div class="item">
-                                    <a href="https://diadiemdanang.vn/goc-an-uong/quan-nhau/">Quán Nhậu</a>
-                                </div>
-                                <div class="item">
-                                    <a href="https://diadiemdanang.vn/goc-an-uong/quan-an-chay/">Quán Chay</a>
-                                </div>
-                                <div class="item">
-                                    <a href="https://diadiemdanang.vn/goc-an-uong/quan-an-vat/">Quán Ăn Vặt</a>
-                                </div>
+                                <?php
+                                    do_shortcode('[ui_category_search]');
+                                ?>
                             </div>
                         </div>
                     </div>

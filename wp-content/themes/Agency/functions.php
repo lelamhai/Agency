@@ -1,4 +1,16 @@
 <?php
+/*
+ * Variables
+ */
+define('MAIN_MENU', 'main_menu');
+define('AREA_MENU', 'area_menu');
+define('CATEGORY_MENU', 'category_menu');
+define('CATEGORY_SEARCH', 'category_search');
+
+
+/*
+ * css and js
+ */
 function agency_regsiter_styles()
 {
     $version = "1.0.2";
@@ -31,7 +43,6 @@ add_action('wp_enqueue_scripts', 'agency_regsiter_styles');
 
 
 
-// ============ MENU =========== \\
 /**
  * Menu Locations
  */
@@ -39,21 +50,21 @@ if (function_exists('wp_nav_menu')) {
     function agency_wp_my_menus()
     {
         register_nav_menus(array(
-            'Main_menu' => __('Menu Chính', 'text_domain'),
-            'Category_desktop_menu' => __('Chuyên Mục Desktop', 'text_domain'),
-            'Category_mobile_menu' => __('Chuyên Mục Mobile', 'text_domain'),
-            'Category_search_menu' => __('Chuyên Mục Search', 'text_domain'),
-            'Area_menu' => __('Khu Vực', 'text_domain')
+            MAIN_MENU => __('Menu Chính', 'text_domain'),
+            AREA_MENU => __('Khu Vực', 'text_domain'),
+            CATEGORY_MENU => __('Chuyên mục', 'text_domain'),
+            CATEGORY_SEARCH => __('Chuyên mục dưới khung search', 'text_domain')
         ));
     }
     add_action('init', 'agency_wp_my_menus');
 }
 
+
 // theme_location Main Menu
 function get_main_menu()
 {
     wp_nav_menu(array(
-        'theme_location' => 'Main_menu',
+        'theme_location' => MAIN_MENU,
         'menu' => '',
         'container' => '',
         'container_class' => '',
@@ -73,11 +84,12 @@ function get_main_menu()
 }
 add_shortcode('main_menu', 'get_main_menu');
 
+
 // theme_location Area Menu
 function get_area_menu()
 {
     wp_nav_menu(array(
-        'theme_location' => 'Area_menu',
+        'theme_location' => AREA_MENU,
         'menu' => '',
         'container' => '',
         'container_class' => '',
@@ -98,11 +110,11 @@ function get_area_menu()
 add_shortcode('area_menu', 'get_area_menu');
 
 
-// theme_location Category Menu Desktop
-function get_category_desktop_menu()
+// theme_location Category Menu
+function get_category_menu()
 {
     wp_nav_menu(array(
-        'theme_location' => 'Category_desktop_menu',
+        'theme_location' => CATEGORY_MENU,
         'menu' => '',
         'container' => '',
         'container_class' => '',
@@ -113,39 +125,59 @@ function get_category_desktop_menu()
         'fallback_cb' => '',
         'before' => '',
         'after' => '',
+        'link_before' => '<i class="fas fa-bell h-custom-fa-bell"></i>',
+        'link_after' => '',
         'items_wrap' => '%3$s',
-        'link_before'=>'<span class="item p-2 d-block h-custom-item"><i class="fab fa-gripfire"></i>', 
-        'link_after'=>'</span>',
         'depth' => 0,
         'walker' => ''
     ));
 }
-add_shortcode('category_desktop_menu', 'get_category_desktop_menu');
+add_shortcode('catetory_menu', 'get_category_menu');
 
-
-// theme_location Category Menu Mobile
-function get_category_mobile_menu()
+/*
+* Show data for UI
+*/
+function ui_category_desktop()
 {
-    wp_nav_menu(array(
-        'theme_location' => 'Category_mobile_menu',
-        'menu' => '',
-        'container' => '',
-        'container_class' => '',
-        'container_id' => '',
-        'menu_class' => '',
-        'menu_id' => '',
-        'echo' => true,
-        'fallback_cb' => '',
-        'before' => '',
-        'after' => '',
-        'items_wrap' => '%3$s',
-        'link_before'=>'<i class="fas fa-bell h-custom-fa-bell"></i>', 
-        'link_after'=>'',
-        'depth' => 0,
-        'walker' => ''
-    ));
+    $menu_name = CATEGORY_MENU;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        foreach ((array) $menu_items as $key => $menu_item) {
+            // var_dump($menu_item);exit();
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+            ?>
+                <li>
+                    <span class="item p-2 d-block" data-id="<?php echo $id?>"><i class="fab fa-gripfire"></i> <?php echo $title?></span>
+                </li>
+            <?php
+        }
+    }
 }
-add_shortcode('category_mobile_menu', 'get_category_mobile_menu');
+add_shortcode('ui_category_desktop', 'ui_category_desktop');
+
+
+function ui_category_search()
+{
+    $menu_name = CATEGORY_SEARCH;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $url =  $menu_item->url;
+            ?>
+
+                <div class="item">
+                    <a href="<?php echo $url?>"><?php echo $title?></a>
+                </div>
+            <?php
+        }
+    }
+}
+add_shortcode('ui_category_search', 'ui_category_search');
+
 
 
 
