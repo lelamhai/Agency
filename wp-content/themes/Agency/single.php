@@ -23,14 +23,14 @@ get_header();
                     <div class="bg-white p-2">
                         <span>
                             <span>
-                                <a href="https://diadiemdanang.vn/">Trang chủ</a> »
+                                <a href="<?php echo get_home_url(); ?>">Trang chủ</a> »
                                 <span>
                                     <a href="https://diadiemdanang.vn/goc-an-uong/">Góc Ăn uống</a> »
-                                    <span><a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/">Quán Cafe</a> » <span class="breadcrumb_last" aria-current="page">Ngập tràn sắc xuân cùng Nice Home Coffee</span></span>
+                                    <span><a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/">Quán Cafe</a> » <span class="breadcrumb_last" aria-current="page"><?php the_title()?></span></span>
                                 </span>
                             </span>
                         </span>
-                        <h1 class="h1" itemprop="name">Ngập tràn sắc xuân cùng Nice Home Coffee</h1>
+                        <h1 class="h1" itemprop="name"><?php the_title()?></h1>
                     </div>
                     <div class="text-center mt-2"></div>
                 </div>

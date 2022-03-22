@@ -64,6 +64,13 @@ add_action('after_setup_theme', 'agency_imagesize');
 /**
  * Setup taxonomy
  */
+add_action('init', 'custom_taxonomy_flush_rewrite');
+function custom_taxonomy_flush_rewrite() {
+    global $wp_rewrite;
+    $wp_rewrite->flush_rules();
+}
+
+
 function agency_taxonomy() {
 	register_taxonomy(
 		AREA_CATEGORY,
