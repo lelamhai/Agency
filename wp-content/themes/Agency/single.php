@@ -1,9 +1,23 @@
 <?php
 get_header();
+// $listCategory = wp_get_post_categories(get_the_ID());
+// var_dump($listCategory);exit;
+// var_dump(get_ancestors( 13, 'category' ));exit;
+
+// $category = get_the_category();
+// $firstCategory = $category[0]->cat_name;
+// var_dump($firstCategory);exit;
+
 ?>
+
 <?php
-?>
-<div itemscope="" itemtype="http://schema.org/LocalBusiness" style="height: auto !important;">
+
+	if ( have_posts() ) {
+
+		while ( have_posts() ) {
+			the_post();
+            ?>
+        <div itemscope="" itemtype="http://schema.org/LocalBusiness" style="height: auto !important;">
             <div class="breadcrumbs mt-3 mb-2" style="height: auto !important;">
                 <div class="container" style="height: auto !important;">
                     <div class="bg-white p-2">
@@ -16,11 +30,9 @@ get_header();
                                 </span>
                             </span>
                         </span>
-                        <h1 class="h1">Ngập tràn sắc xuân cùng Nice Home Coffee</h1>
+                        <h1 class="h1" itemprop="name">Ngập tràn sắc xuân cùng Nice Home Coffee</h1>
                     </div>
-                    <div class="text-center mt-2">
-                        
-                    </div>
+                    <div class="text-center mt-2"></div>
                 </div>
             </div>
             <div class="container-fluid" style="height: auto !important;">
@@ -266,7 +278,6 @@ get_header();
                                     <h3 id="xem-them-cac-hinh-anh-dep-tai-nice-home-coffee">Xem thêm các hình ảnh đẹp tại Nice Home Coffee</h3>
                                 </div>
                             </div>
-
                             <div class="alert-info alert rounded-0 author-box mt-2 mb-2">
                                 <div class="row">
                                     <div class="col-md-2 col-4">
@@ -464,35 +475,86 @@ get_header();
                             </div>
                         </div>
                         <div class="col-md-3" style="height: auto !important; min-height: 0px !important;">
-                           
+                            <script async="" src="./Ngập tràn sắc xuân cùng Nice Home Coffee - Địa Điểm Đà Nẵng_files/f(3).txt"></script>
+                            <ins
+                                class="adsbygoogle"
+                                style="display: block; height: 250px;"
+                                data-ad-client="ca-pub-9830062738315083"
+                                data-ad-slot="5589172750"
+                                data-ad-format="auto"
+                                data-full-width-responsive="true"
+                                data-adsbygoogle-status="done"
+                                data-ad-status="filled"
+                                data-overlap-observer-io="false"
+                            >
+                                <ins
+                                    id="aswift_3_expand"
+                                    style="border: none; height: 250px; width: 309px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"
+                                    tabindex="0"
+                                    title="Advertisement"
+                                    aria-label="Advertisement"
+                                >
+                                    <ins
+                                        id="aswift_3_anchor"
+                                        style="border: none; height: 250px; width: 309px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block; overflow: visible;"
+                                    >
+                                        <iframe
+                                            id="aswift_3"
+                                            name="aswift_3"
+                                            style="left: 0; position: absolute; top: 0; border: 0; width: 309px !important; height: 250px !important;"
+                                            sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+                                            width="309"
+                                            height="250"
+                                            frameborder="0"
+                                            marginwidth="0"
+                                            marginheight="0"
+                                            vspace="0"
+                                            hspace="0"
+                                            allowtransparency="true"
+                                            scrolling="no"
+                                            src="./Ngập tràn sắc xuân cùng Nice Home Coffee - Địa Điểm Đà Nẵng_files/ads(3).html"
+                                            data-google-container-id="a!4"
+                                            data-google-query-id="CNG5w6z02PYCFe3jcwEdO3UOzw"
+                                            data-load-complete="true"
+                                        ></iframe>
+                                    </ins>
+                                </ins>
+                            </ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                            <div class="sidebar-wrap"></div>
                         </div>
                     </div>
                 </main>
             </div>
             <div class="d-none">
                 <span itemprop="priceRange">Liên hệ</span>
-                <span itemprop="aggregateRating">
+                <span itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
                     <span class="label label-warning">Xếp hạng</span>
                     <span class="average-rating" itemprop="ratingValue">5</span>
-                    5 - Dựa trên <span>5</span> đánh giá
+                    5 - Dựa trên <span itemprop="reviewCount">5</span> đánh giá
                 </span>
-                <div>
-                    <div>Hoà Khương, Hoà Vang, Đà Nẵng</div>
+                <div itemtype="http://schema.org/PostalAddress" itemscope="" itemprop="address">
+                    <div itemprop="streetAddress">Hoà Khương, Hoà Vang, Đà Nẵng</div>
                     <div>
-                        <span>Đà Nẵng</span>,
-                        <span></span>
-                        <span>550000</span>
+                        <span itemprop="addressLocality">Đà Nẵng</span>,
+                        <span itemprop="addressRegion"></span>
+                        <span itemprop="postalCode">550000</span>
                     </div>
                 </div>
-                <span></span>
+                <span itemprop="telephone"></span>
+                <div itemtype="http://schema.org/GeoCoordinates" itemscope="" itemprop="geo">
+                    <meta itemprop="latitude" content="" />
+                    <meta itemprop="longitude" content="" />
+                </div>
                 <img itemprop="image" class="pic-place" src="https://diadiemdanang.vn/goc-an-uong/quan-cafe/ngap-tran-sac-xuan-cung-nice-home-coffee/" alt="Ngập tràn sắc xuân cùng Nice Home Coffee" />
             </div>
         </div>
-
-    <?php
-
+            <?php
+		}
+	}
 ?>
-
 
 <?php
 get_footer();

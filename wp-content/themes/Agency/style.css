@@ -314,3 +314,7 @@ footer.footer ul.category li span {
 .h-custom-fa-bell {
 	padding-right: 10px;
 }
+
+.h-custom-single-wrap .item .comma {
+	padding: 0;
+}

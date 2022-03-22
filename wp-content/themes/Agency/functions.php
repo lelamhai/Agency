@@ -1,6 +1,6 @@
 <?php
 /*
- * Variables
+ * Variables menu
  */
 define('MAIN_MENU', 'main_menu');
 define('AREA_MENU', 'area_menu');
@@ -8,6 +8,11 @@ define('CATEGORY_MENU', 'category_menu');
 define('CATEGORY_SEARCH', 'category_search');
 define('TAGS', 'tags');
 define('TOP_ADDRESS_HOME', 'top_address_home');
+/*
+ * Variables taxonomy
+ */
+define('AREA_CATEGORY', 'area_category');
+define('TAGS_CATEGORY', 'tags_category');
 
 
 /*
@@ -15,7 +20,7 @@ define('TOP_ADDRESS_HOME', 'top_address_home');
  */
 function agency_regsiter_styles()
 {
-    $version = "1.0.2";
+    $version = "1.0.3";
     
     // ------------------- css ----------------- \\
     // style css
@@ -54,6 +59,39 @@ function agency_imagesize() {
   
 }
 add_action('after_setup_theme', 'agency_imagesize');
+
+
+/**
+ * Setup taxonomy
+ */
+function agency_taxonomy() {
+	register_taxonomy(
+		AREA_CATEGORY,
+		'post',
+		array(
+			'label' => __( 'Area' ),
+            'rewrite' => array('slug' => 'khu-vuc'),
+			'hierarchical' => true,
+            'show_in_rest' => true,
+		)
+	);
+}
+add_action( 'init', 'agency_taxonomy' );
+
+
+function agency_taxonomy_tags() {
+	register_taxonomy(
+		TAGS_CATEGORY,
+		'post',
+		array(
+			'label' => __( 'Tags' ),
+            'rewrite' => array('slug' => 'tags'),
+			'hierarchical' => true,
+            'show_in_rest' => true,
+		)
+	);
+}
+add_action( 'init', 'agency_taxonomy_tags' );
 
 
 
@@ -265,7 +303,7 @@ function ui_top_category_0()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, 'category');
+            $term = get_term_by('id', $id, AREA_CATEGORY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
@@ -311,7 +349,7 @@ function ui_top_category_1()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, 'category');
+            $term = get_term_by('id', $id, AREA_CATEGORY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
@@ -357,7 +395,7 @@ function ui_top_category_2()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, 'category');
+            $term = get_term_by('id', $id, AREA_CATEGORY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
@@ -403,7 +441,7 @@ function ui_top_category_3()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, 'category');
+            $term = get_term_by('id', $id, AREA_CATEGORY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
@@ -449,7 +487,7 @@ function ui_top_category_4()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, 'category');
+            $term = get_term_by('id', $id, AREA_CATEGORY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
@@ -497,7 +535,7 @@ function ui_top_category_5()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, 'category');
+            $term = get_term_by('id', $id, AREA_CATEGORY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
