@@ -11,8 +11,9 @@ define('TOP_ADDRESS_HOME', 'top_address_home');
 /*
  * Variables taxonomy
  */
-define('AREA_CATEGORY', 'area_category');
-define('TAGS_CATEGORY', 'tags_category');
+define('AREA_AGENCY', 'area_agency');
+define('TAGS_AGENCY', 'tags_agency');
+define('CATEGORY_AGENCY', 'category_agency');
 
 
 /*
@@ -54,8 +55,8 @@ add_action('wp_enqueue_scripts', 'agency_regsiter_styles');
  */
 function agency_imagesize() {
     add_theme_support('post-thumbnails');
-    add_image_size('image-post-news', 555, 450, true);
-    add_image_size('image-post-news', 278, 210, true);
+    // add_image_size('image-post-news', 555, 450, true);
+    // add_image_size('image-post-news', 278, 210, true);
   
 }
 add_action('after_setup_theme', 'agency_imagesize');
@@ -73,13 +74,17 @@ function custom_taxonomy_flush_rewrite() {
 
 function agency_taxonomy() {
 	register_taxonomy(
-		AREA_CATEGORY,
+		AREA_AGENCY,
 		'post',
 		array(
-			'label' => __( 'Area' ),
+			'label' => __( 'Agency Area' ),
             'rewrite' => array('slug' => 'khu-vuc'),
 			'hierarchical' => true,
             'show_in_rest' => true,
+            'show_ui'           => true,
+            'show_admin_column' => true,
+            'query_var'         => true,
+
 		)
 	);
 }
@@ -88,17 +93,37 @@ add_action( 'init', 'agency_taxonomy' );
 
 function agency_taxonomy_tags() {
 	register_taxonomy(
-		TAGS_CATEGORY,
+		TAGS_AGENCY,
 		'post',
 		array(
-			'label' => __( 'Tags' ),
+			'label' => __( 'Agency Tags' ),
             'rewrite' => array('slug' => 'tags'),
 			'hierarchical' => true,
             'show_in_rest' => true,
+            'show_ui'           => true,
+            'show_admin_column' => true,
+            'query_var'         => true,
 		)
 	);
 }
 add_action( 'init', 'agency_taxonomy_tags' );
+
+function agency_taxonomy_category() {
+	register_taxonomy(
+		CATEGORY_AGENCY,
+		'post',
+		array(
+			'label' => __( 'Agency Category' ),
+            'rewrite' => array('slug' => 'category'),
+			'hierarchical' => true,
+            'show_in_rest' => true,
+            'show_ui'           => true,
+            'show_admin_column' => true,
+            'query_var'         => true,
+		)
+	);
+}
+add_action( 'init', 'agency_taxonomy_category' );
 
 
 
@@ -114,7 +139,7 @@ if (function_exists('wp_nav_menu')) {
             CATEGORY_MENU => __('Chuyên mục', 'text_domain'),
             CATEGORY_SEARCH => __('Chuyên mục dưới khung search', 'text_domain'),
             TAGS => __('Tags', 'text_domain'),
-            TOP_ADDRESS_HOME => __('Điểm đến hàng đầu trang chủ', 'text_domain')
+            TOP_ADDRESS_HOME => __('Điểm đến hàng đầu 6 bài viết ở trang chủ', 'text_domain')
         ));
     }
     add_action('init', 'agency_wp_my_menus');
@@ -304,13 +329,12 @@ function ui_top_category_0()
     if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
         $menu = wp_get_nav_menu_object($locations[$menu_name]);
         $menu_items = wp_get_nav_menu_items($menu->term_id);
-        
         $index = 0;
         foreach ((array) $menu_items as $key => $menu_item) {
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, AREA_CATEGORY);
+            $term = get_term_by('id', $id, AREA_AGENCY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
@@ -356,7 +380,7 @@ function ui_top_category_1()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, AREA_CATEGORY);
+            $term = get_term_by('id', $id, AREA_AGENCY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
@@ -402,7 +426,7 @@ function ui_top_category_2()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, AREA_CATEGORY);
+            $term = get_term_by('id', $id, AREA_AGENCY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
@@ -448,7 +472,7 @@ function ui_top_category_3()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, AREA_CATEGORY);
+            $term = get_term_by('id', $id, AREA_AGENCY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
@@ -494,7 +518,7 @@ function ui_top_category_4()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, AREA_CATEGORY);
+            $term = get_term_by('id', $id, AREA_AGENCY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
@@ -542,7 +566,7 @@ function ui_top_category_5()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $term = get_term_by('id', $id, AREA_CATEGORY);
+            $term = get_term_by('id', $id, AREA_AGENCY);
             $image = get_field('thumbnail_category',  $term);
             $address = get_field('address_category',  $term);
             $description = $term->description;
@@ -575,8 +599,58 @@ function ui_top_category_5()
     }
 }
 add_shortcode('ui_top_category_5', 'ui_top_category_5');
+// ====== Taxonomy ======= \\
+function ui_taxonomy($attr)
+{
 
+    
 
+    
+
+    $taxonomies = get_terms( array(
+        'taxonomy' => CATEGORY_AGENCY,
+        'hide_empty' => false
+    ) );
+
+    // var_dump(count($taxonomies));exit;
+
+    $list = array();
+    $catName = array();
+    
+    $i = 0;
+    foreach( $taxonomies as $category )
+    {
+        $list[$i] = array();
+        $catName[] = $category->slug;
+        $i ++;
+    }
+    // var_dump($catName);exit;
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => -1,
+        'tax_query' => array(             
+             array(
+                'taxonomy' => $attr["taxonomy"],
+                'field' => 'slug',
+                'terms' => $attr["slug"],
+            ),
+         )
+    );
+    $posts =  get_posts( $args );
+    foreach ($posts as $post) { 
+        $terms = get_the_terms( $post->ID, CATEGORY_AGENCY ); 
+        foreach ( $terms as $term ) { // count
+            for ($i=0; $i < count($catName) ; $i++) { 
+                if($catName[$i] === $term->slug)
+                {
+                    array_push($list[$i], $post->ID); 
+                }
+            }
+        }
+    }
+    // var_dump($list);
+}
+add_shortcode('ui_taxonomy', 'ui_taxonomy');
 
 // ====== Footer ======= \\
 function ui_category_footer()

@@ -1,6 +1,16 @@
 <?php
     get_header();
     $queried_object = get_queried_object();
+    // $term_obj_list = get_the_terms( 54, 'category_agency' );
+    // var_dump($term_obj_list);
+?>
+<?php
+    
+    
+
+?>
+<?php
+        do_shortcode('[ui_taxonomy taxonomy="'.$queried_object->taxonomy.'" slug="'.$queried_object->slug.'"]');
 ?>
 
         <div class="breadcrumbs mt-2 mb-2">
