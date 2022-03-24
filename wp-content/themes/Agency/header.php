@@ -11,7 +11,7 @@
     </head>
 
     <body class="home blog">
-
+        <input type="hidden" value="<?php echo get_home_url(); ?>" id="url-home">
         <header class="header pt-2 pb-2">
             <div class="container">
                 <a class="menu-mobile mobile-btn position-left ml-2 d-block d-md-none h-custom-menu-mobile">

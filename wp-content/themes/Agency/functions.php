@@ -312,14 +312,6 @@ function ui_tags()
 }
 add_shortcode('ui_tags', 'ui_tags');
 
-
-
-
-
-
-
-
-
 /*
 * Ajax header
 */
@@ -330,6 +322,7 @@ function load_data_post_header()
 
     $the_query = new WP_Query( array(
         'post_type' => 'post',
+        'posts_per_page' => 6,
         'tax_query' => array(
             array (
                 'taxonomy' => CATEGORY_AGENCY,
@@ -364,16 +357,12 @@ function load_data_post_header()
 }
 add_shortcode('load_data_post_header', 'load_data_post_header');
 
-
-
-
-add_action('wp_ajax_random', 'random_function');
-add_action('wp_ajax_nopriv_random', 'random_function');
 function random_function() {
     if($_REQUEST["idPost"] && !empty($_REQUEST["idPost"]))
     {
         $the_query = new WP_Query( array(
             'post_type' => 'post',
+            'posts_per_page' => 6,
             'tax_query' => array(
                 array (
                     'taxonomy' => CATEGORY_AGENCY,
@@ -406,7 +395,133 @@ function random_function() {
     }
     die(); 
 }
+add_action('wp_ajax_random', 'random_function');
+add_action('wp_ajax_nopriv_random', 'random_function');
 
+
+function category_function() {
+    if($_REQUEST["catName"] && !empty($_REQUEST["catName"]))
+    {
+        $args = array(
+            'post_type' => 'post',
+            'post_status'  => 'publish',
+            'category_name' => $_REQUEST["catName"],                                         
+            'posts_per_page' => 1,
+            'paged' => $_REQUEST["paged"],
+        );  
+        $the_query = new WP_Query( $args );
+        
+        while ( $the_query->have_posts() ) :
+            $the_query->the_post();
+            ?>
+                            <div class="col-md-3 h-custom-news-col-md-3" >
+                                <div class="bg-white m-2">
+                                    <div class="item mt-1 mb-1 post-7348 post type-post status-publish format-standard has-post-thumbnail hentry category-tin-tuc">
+                                        <a href="<?php the_permalink(); ?>">
+                                            <img src="<?php the_post_thumbnail_url($size) ?>" class="img-fluid wp-post-image" />
+                                        </a>
+                                        <div class="info">
+                                            <a class="post-title text-dark" href="<?php the_permalink(); ?>"><?php the_title();?></a>
+                                            <span><i class="fas fa-map-marker-alt"></i> </span>
+                                        </div>
+                                        <div class="meta">
+
+                                        <?php if( have_rows('represent_post', $post->ID) ): ?>
+
+                                            <?php while( have_rows('represent_post', $post->ID) ): the_row(); ?>
+
+                                                <?php 
+                                                    if(get_sub_field('comfirm_post'))
+                                                    {
+                                                        ?><span class="text-danger" style="color: green !important"><i class="far fa-check-circle"></i> Đã xác thực</span><?php
+                                                    } else {
+                                                        ?><span class="text-danger"><i class="far fa-check-circle"></i> Chưa xác thực</span><?php
+                                                    }
+                                                ?> 
+                                                <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i><?php the_sub_field('address_represent_post'); ?></span>
+                                            <?php endwhile; ?>
+
+                                        <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            <?php
+        endwhile;
+    }
+    die(); 
+}
+add_action('wp_ajax_category', 'category_function');
+add_action('wp_ajax_nopriv_category', 'category_function');
+
+
+function area_function() {
+
+    if(!empty($_REQUEST["areaID"]) || !empty($_REQUEST["categoryID"]))
+    {
+        $args = array(
+            'post_status'  => 'publish',
+            'post_type' => 'post',
+            'posts_per_page' => -1,
+            'tax_query' => array(
+                'relation' => 'AND',
+                array(
+                    'taxonomy' => AREA_AGENCY,
+                    'field'    => 'term_id',
+                    'terms'    => $_REQUEST["areaID"],
+                ),
+                array(
+                    'taxonomy' => CATEGORY_AGENCY,
+                    'field'    => 'term_id',
+                    'terms'    => $_REQUEST["categoryID"],
+                ),
+            ),
+        );
+    }
+
+    $the_query = new WP_Query( $args );
+    while ( $the_query->have_posts() ) :
+        $the_query->the_post();
+        ?>
+                        <div class="col-md-3 h-custom-news-col-md-3" >
+                            <div class="bg-white m-2">
+                                <div class="item mt-1 mb-1 post-7348 post type-post status-publish format-standard has-post-thumbnail hentry category-tin-tuc">
+                                    <a href="<?php the_permalink(); ?>">
+                                        <img src="<?php the_post_thumbnail_url($size) ?>" class="img-fluid wp-post-image" />
+                                    </a>
+                                    <div class="info">
+                                        <a class="post-title text-dark" href="<?php the_permalink(); ?>"><?php the_title();?></a>
+                                        <span><i class="fas fa-map-marker-alt"></i> </span>
+                                    </div>
+                                    <div class="meta">
+
+                                    <?php if( have_rows('represent_post', $post->ID) ): ?>
+
+                                        <?php while( have_rows('represent_post', $post->ID) ): the_row(); ?>
+
+                                            <?php 
+                                                if(get_sub_field('comfirm_post'))
+                                                {
+                                                    ?><span class="text-danger" style="color: green !important"><i class="far fa-check-circle"></i> Đã xác thực</span><?php
+                                                } else {
+                                                    ?><span class="text-danger"><i class="far fa-check-circle"></i> Chưa xác thực</span><?php
+                                                }
+                                            ?> 
+                                            <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i><?php the_sub_field('address_represent_post'); ?></span>
+                                        <?php endwhile; ?>
+
+                                    <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        <?php
+    endwhile;
+
+    die(); 
+}
+add_action('wp_ajax_area', 'area_function');
+add_action('wp_ajax_nopriv_area', 'area_function');
 
 
 
