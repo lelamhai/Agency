@@ -243,7 +243,7 @@
                             <strong>Tìm kiếm địa điểm gần bạn nhất</strong>
                             <span>Nhanh chóng - Chính xác - Đánh giá khách quan nhất</span>
                             <div class="mt-2 mb-2">
-                                <form role="search" method="get" class="search-form" action="https://diadiemdanang.vn/">
+                                <form role="search" method="get" class="search-form" action="<?php echo get_home_url(); ?>/search">
                                     <div class="align-items-center">
                                         <div class="input-group">
                                             <input type="search" class="form-control search-ajax" placeholder="Địa điểm ăn uống, khu vui chơi, món ngon..." value="" name="s" />

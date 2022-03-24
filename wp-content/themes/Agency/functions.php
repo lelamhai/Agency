@@ -690,7 +690,7 @@ function ui_taxonomy($attr)
                                                     <img src="<?php echo get_the_post_thumbnail_url( $list[$index][$i], 'thumbnail' ); ?>" class="img-fluid wp-post-image"loading="lazy" />
                                                 </a>
                                                 <div class="info">
-                                                    <a class="post-title text-dark" href="https://diadiemdanang.vn/goc-an-uong/quan-an-chay/tiem-chay-xua-da-nang/"><?php echo $post->post_title?></a>
+                                                    <a class="post-title text-dark" href="<?php echo get_permalink($post->ID)?>"><?php echo $post->post_title?></a>
 
                                                         <?php if( have_rows('info_post', $post->ID) ): ?>
 
@@ -717,20 +717,16 @@ function ui_taxonomy($attr)
                                                                     ?><span class="text-danger"><i class="far fa-check-circle"></i> Chưa xác thực</span><?php
                                                                 }
                                                             ?> 
-                                                            
-                                                            <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i> Địa Điểm Đà Nẵng</span>
+                                                            <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i><?php the_sub_field('address_represent_post'); ?></span>
                                                         <?php endwhile; ?>
 
                                                     <?php endif; ?>
 
-                                                    <!-- <span class="text-danger"><i class="far fa-check-circle"></i> Đã xác thực</span>
-                                                    <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i> Địa Điểm Đà Nẵng</span> -->
-                                                </div>
+                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 <?php
-                                // echo $list[$index][$i]."<br>";
                             }
                         } else 
                         {
