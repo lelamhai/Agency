@@ -599,58 +599,6 @@ function ui_top_category_5()
     }
 }
 add_shortcode('ui_top_category_5', 'ui_top_category_5');
-// ====== Taxonomy ======= \\
-function ui_taxonomy($attr)
-{
-
-    
-
-    
-
-    $taxonomies = get_terms( array(
-        'taxonomy' => CATEGORY_AGENCY,
-        'hide_empty' => false
-    ) );
-
-    // var_dump(count($taxonomies));exit;
-
-    $list = array();
-    $catName = array();
-    
-    $i = 0;
-    foreach( $taxonomies as $category )
-    {
-        $list[$i] = array();
-        $catName[] = $category->slug;
-        $i ++;
-    }
-    // var_dump($catName);exit;
-    $args = array(
-        'post_type' => 'post',
-        'posts_per_page' => -1,
-        'tax_query' => array(             
-             array(
-                'taxonomy' => $attr["taxonomy"],
-                'field' => 'slug',
-                'terms' => $attr["slug"],
-            ),
-         )
-    );
-    $posts =  get_posts( $args );
-    foreach ($posts as $post) { 
-        $terms = get_the_terms( $post->ID, CATEGORY_AGENCY ); 
-        foreach ( $terms as $term ) { // count
-            for ($i=0; $i < count($catName) ; $i++) { 
-                if($catName[$i] === $term->slug)
-                {
-                    array_push($list[$i], $post->ID); 
-                }
-            }
-        }
-    }
-    // var_dump($list);
-}
-add_shortcode('ui_taxonomy', 'ui_taxonomy');
 
 // ====== Footer ======= \\
 function ui_category_footer()
@@ -677,4 +625,146 @@ function ui_category_footer()
     }
 }
 add_shortcode('ui_category_footer', 'ui_category_footer');
+
+// ====== Taxonomy category ======= \\
+function ui_taxonomy($attr)
+{
+    $taxonomies = get_terms( array(
+        'taxonomy' => CATEGORY_AGENCY,
+        'hide_empty' => false
+    ) );
+
+    $list = array();
+    $catName = array();
+    
+    $i = 0;
+    foreach( $taxonomies as $category )
+    {
+        $list[$i] = array();
+        $catName[] = $category->slug;
+        $i ++;
+    }
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => -1,
+        'tax_query' => array(             
+             array(
+                'taxonomy' => $attr["taxonomy"],
+                'field' => 'slug',
+                'terms' => $attr["slug"],
+            ),
+         )
+    );
+    $posts =  get_posts( $args );
+    foreach ($posts as $post) { 
+        $terms = get_the_terms( $post->ID, CATEGORY_AGENCY ); 
+        foreach ( $terms as $term ) {
+            for ($i=0; $i < count($catName) ; $i++) { 
+                if($catName[$i] === $term->slug)
+                {
+                    array_push($list[$i], $post->ID); 
+                }
+            }
+        }
+    }
+
+
+    $index = 0;
+    foreach( $taxonomies as $category ) {
+        ?>
+            <div class="archive-wrap page-wrap">
+                <div class="bg-white p-1 mt-2 mb-2">
+                    <h2><span><?php echo $category->name?></span></h2>
+                    <div class="row no-gutters">
+                        <?php
+                        if($list[$index] != null)
+                        {
+                            for ($i=0; $i < count($list[$index]) ; $i++) { 
+
+                                $post   = get_post( $list[$index][$i] );
+                                ?>
+                                    <div class="col-md-3">
+                                        <div class="bg-light m-1">
+                                            <div class="item mt-1 mb-1 post-2020 post type-post status-publish format-standard has-post-thumbnail hentry category-quan-an-chay category-quan-com province-hai-chau">
+                                                <a href="<?php echo get_permalink($post->ID)?>">
+                                                    <img src="<?php echo get_the_post_thumbnail_url( $list[$index][$i], 'thumbnail' ); ?>" class="img-fluid wp-post-image"loading="lazy" />
+                                                </a>
+                                                <div class="info">
+                                                    <a class="post-title text-dark" href="https://diadiemdanang.vn/goc-an-uong/quan-an-chay/tiem-chay-xua-da-nang/"><?php echo $post->post_title?></a>
+
+                                                        <?php if( have_rows('info_post', $post->ID) ): ?>
+
+                                                            <?php while( have_rows('info_post', $post->ID) ): the_row(); ?>
+                                                                <span>
+                                                                    <i class="fas fa-map-marker-alt"></i><?php the_sub_field('address_post'); ?>
+                                                                </span>
+                                                            <?php endwhile; ?>
+
+                                                        <?php endif; ?>
+
+                                                </div>
+                                                <div class="meta">
+
+                                                    <?php if( have_rows('represent_post', $post->ID) ): ?>
+
+                                                        <?php while( have_rows('represent_post', $post->ID) ): the_row(); ?>
+
+                                                            <?php 
+                                                                if(get_sub_field('comfirm_post'))
+                                                                {
+                                                                    ?><span class="text-danger" style="color: green !important"><i class="far fa-check-circle"></i> Đã xác thực</span><?php
+                                                                } else {
+                                                                    ?><span class="text-danger"><i class="far fa-check-circle"></i> Chưa xác thực</span><?php
+                                                                }
+                                                            ?> 
+                                                            
+                                                            <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i> Địa Điểm Đà Nẵng</span>
+                                                        <?php endwhile; ?>
+
+                                                    <?php endif; ?>
+
+                                                    <!-- <span class="text-danger"><i class="far fa-check-circle"></i> Đã xác thực</span>
+                                                    <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i> Địa Điểm Đà Nẵng</span> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                // echo $list[$index][$i]."<br>";
+                            }
+                        } else 
+                        {
+                            ?>
+                                <div class="col-md-3">
+                                        Chưa có dữ liệu
+                                </div>
+                            <?php
+                        }
+
+                        $index ++;
+                        ?>
+                    </div>
+                </div>
+            </div>
+        <?php
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+}
+add_shortcode('ui_taxonomy', 'ui_taxonomy');
 ?>
