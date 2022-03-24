@@ -14,6 +14,11 @@ define('TOP_ADDRESS_HOME', 'top_address_home');
 define('AREA_AGENCY', 'area_agency');
 define('TAGS_AGENCY', 'tags_agency');
 define('CATEGORY_AGENCY', 'category_agency');
+/*
+ * Variables
+ */
+global $categoryLast;
+$categoryLast = null;
 
 
 /*
@@ -21,7 +26,7 @@ define('CATEGORY_AGENCY', 'category_agency');
  */
 function agency_regsiter_styles()
 {
-    $version = "1.0.3";
+    $version = "1.0.4";
     
     // ------------------- css ----------------- \\
     // style css
@@ -46,6 +51,7 @@ function agency_regsiter_styles()
     wp_enqueue_script('agency-bootstrap.min', get_template_directory_uri() . "/assets/js/bootstrap.min.js", array(), $version, true);
     wp_enqueue_script('agency-owl.carousel.min', get_template_directory_uri() . "/assets/js/owl.carousel.min.js", array(), $version, true);
     wp_enqueue_script('agency-custom', get_template_directory_uri() . "/assets/js/custom.js", array(), $version, true);
+    wp_enqueue_script('agency-main', get_template_directory_uri() . "/assets/js/main.js", array(), $version, true);
 }
 add_action('wp_enqueue_scripts', 'agency_regsiter_styles');
 
@@ -225,24 +231,48 @@ add_shortcode('catetory_menu', 'get_category_menu');
 */
 function ui_category_desktop()
 {
+    // var_dump($categoryLast);exit;
+    $first = true;
+    $last = 0;
+    $index = 0;
     $menu_name = CATEGORY_MENU;
     if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
         $menu = wp_get_nav_menu_object($locations[$menu_name]);
         $menu_items = wp_get_nav_menu_items($menu->term_id);
+
+        $last = count($menu_items) - 1;
+
         foreach ((array) $menu_items as $key => $menu_item) {
             // var_dump($menu_item);exit();
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
-            ?>
-                <li>
-                    <span class="item p-2 d-block" data-id="<?php echo $id?>"><i class="fab fa-gripfire"></i> <?php echo $title?></span>
-                </li>
-            <?php
+            if($last == $index)
+            {
+                global $categoryLast;
+                $categoryLast = $menu_item;
+            }
+
+            if($first)
+            {
+                ?>
+                    <li class="h-custom-li-category">
+                        <span class="item p-2 d-block active" data-id="<?php echo $id?>"><i class="fab fa-gripfire"></i> <?php echo $title?></span>
+                    </li>
+                <?php
+                $first = false;
+            } else {
+                ?>
+                    <li class="h-custom-li-category">
+                        <span class="item p-2 d-block" data-id="<?php echo $id?>"><i class="fab fa-gripfire"></i> <?php echo $title?></span>
+                    </li>
+                <?php
+            }
+
+            $index ++;
         }
     }
 }
 add_shortcode('ui_category_desktop', 'ui_category_desktop');
-
 
 function ui_category_search()
 {
@@ -283,7 +313,114 @@ function ui_tags()
 add_shortcode('ui_tags', 'ui_tags');
 
 
-// ====== Filter ======= \\
+
+
+
+
+
+
+
+/*
+* Ajax header
+*/
+// ======== First ========= \\
+function load_data_post_header()
+{
+    global $categoryLast;
+
+    $the_query = new WP_Query( array(
+        'post_type' => 'post',
+        'tax_query' => array(
+            array (
+                'taxonomy' => CATEGORY_AGENCY,
+                'field' => 'term_id',
+                'terms' => $categoryLast->object_id
+            )
+        ),
+    ) );
+    
+    while ( $the_query->have_posts() ) :
+        $the_query->the_post();
+        ?>
+        <div class="col-md-4 h-custom-header-col-md-4">
+            <div class="bg-white m-1">
+                <div class="item mt-1 mb-1 post-3719 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-quan-cafe province-hai-chau">
+                    <a href="<?php the_permalink()?>">
+                    <img
+                        src="<?php the_post_thumbnail_url()?>"
+                        class="img-fluid wp-post-image"
+                        />
+                    </a>
+                    <div class="info">
+                        <a class="post-title text-danger" href="<?php the_permalink()?>/"><?php the_title()?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    endwhile;
+    wp_reset_postdata();
+    
+}
+add_shortcode('load_data_post_header', 'load_data_post_header');
+
+
+
+
+add_action('wp_ajax_random', 'random_function');
+add_action('wp_ajax_nopriv_random', 'random_function');
+function random_function() {
+    if($_REQUEST["idPost"] && !empty($_REQUEST["idPost"]))
+    {
+        $the_query = new WP_Query( array(
+            'post_type' => 'post',
+            'tax_query' => array(
+                array (
+                    'taxonomy' => CATEGORY_AGENCY,
+                    'field' => 'term_id',
+                    'terms' => $_REQUEST["idPost"]
+                )
+            ),
+        ) );
+        
+        while ( $the_query->have_posts() ) :
+            $the_query->the_post();
+            ?>
+            <div class="col-md-4 h-custom-header-col-md-4">
+                <div class="bg-white m-1">
+                    <div class="item mt-1 mb-1 post-3719 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-quan-cafe province-hai-chau">
+                        <a href="<?php the_permalink()?>">
+                        <img
+                            src="<?php the_post_thumbnail_url()?>"
+                            class="img-fluid wp-post-image"
+                            />
+                        </a>
+                        <div class="info">
+                            <a class="post-title text-danger" href="<?php the_permalink()?>/"><?php the_title()?></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+        endwhile;
+    }
+    die(); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ======== Filter ======== \\
 function ui_filter_area()
 {
     $menu_name = AREA_MENU;
@@ -763,4 +900,7 @@ function ui_taxonomy($attr)
     
 }
 add_shortcode('ui_taxonomy', 'ui_taxonomy');
+
+
+
 ?>

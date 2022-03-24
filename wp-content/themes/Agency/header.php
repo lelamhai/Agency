@@ -86,7 +86,7 @@
                         <div class="row no-gutters">
                             <div class="col-md-3">
                                 <div class="bg-light">
-                                    <ul>
+                                    <ul id="h-custom-ul_menu">
                                         <?php
                                             do_shortcode('[ui_category_desktop]');
                                         ?>
@@ -96,8 +96,14 @@
                             <div class="col-md-9">
                                 <div class="menu-category-wrap">
                                     <div class="archive-wrap page-wrap">
-                                        <div class="row no-gutters">
-                                            <div class="col-md-4">
+                                        <div class="row no-gutters" id="h-custom-header-category">
+
+                                            <?php
+                                                do_shortcode('[load_data_post_header]');
+                                            ?>
+
+
+                                            <!-- <div class="col-md-4">
                                                 <div class="bg-white m-1">
                                                     <div class="item mt-1 mb-1 post-3719 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-quan-cafe province-hai-chau">
                                                         <a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/tokyo-town/">
@@ -224,7 +230,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
