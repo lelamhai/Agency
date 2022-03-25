@@ -1,6 +1,6 @@
 $(document).ready(function(){
     var url_home = $( "#url-home" ).val();
-    
+    // Header
     $("#h-custom-ul_menu").on('click','.h-custom-li-category .item',function(){
         $('.h-custom-li-category .item').removeClass("active");
         $(this).addClass("active"); 
@@ -25,7 +25,7 @@ $(document).ready(function(){
         });
     });
 
-
+    // page news and entertainment
     $paged = 2;
     $( ".misha_loadmore" ).click(function() {
         var category = $( "#category" ).val();
@@ -51,6 +51,7 @@ $(document).ready(function(){
         $paged ++;
     });
 
+    // page news and entertainment
     $( ".h-custom-search" ).click(function() {
         var areaID = $('#h-custom-area').val();
         var categoryID = $('#h-custom-category').val();
@@ -76,4 +77,31 @@ $(document).ready(function(){
         });
     });
 
+    // page handbook
+    $page = 2;
+    $( ".misha_loadmore" ).click(function() {
+        var catSlug = $( "#category" ).val();
+        var catName = $( "#catName" ).val();
+        $.ajax({
+            type : "GET", 
+            dataType : "html", 
+            url : url_home+"/wp-admin/admin-ajax.php",
+            data : {
+                action: "handbook", 
+                catSlug:  catSlug,
+                catName:  catName,
+                paged: $page,
+            },
+            beforeSend: function(){
+                // $(".h-custom-header-col-md-4").remove();
+            },
+            success: function(response) {
+                $( "#h-custom-blog-wrap" ).append( response );
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+                 console.log( 'The following error occured: ' + textStatus, errorThrown );
+            }
+        });
+        $page ++;
+    });
 });

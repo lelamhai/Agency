@@ -8,6 +8,9 @@ define('CATEGORY_MENU', 'category_menu');
 define('CATEGORY_SEARCH', 'category_search');
 define('TAGS', 'tags');
 define('TOP_ADDRESS_HOME', 'top_address_home');
+
+define('FOOTER_CAFE', 'footer_cafe');
+define('FOOTER_ADDRESS', 'footer_address');
 /*
  * Variables taxonomy
  */
@@ -77,7 +80,6 @@ function custom_taxonomy_flush_rewrite() {
     $wp_rewrite->flush_rules();
 }
 
-
 function agency_taxonomy() {
 	register_taxonomy(
 		AREA_AGENCY,
@@ -131,8 +133,6 @@ function agency_taxonomy_category() {
 }
 add_action( 'init', 'agency_taxonomy_category' );
 
-
-
 /**
  * Menu Locations
  */
@@ -145,7 +145,9 @@ if (function_exists('wp_nav_menu')) {
             CATEGORY_MENU => __('Chuyên mục', 'text_domain'),
             CATEGORY_SEARCH => __('Chuyên mục dưới khung search', 'text_domain'),
             TAGS => __('Tags', 'text_domain'),
-            TOP_ADDRESS_HOME => __('Điểm đến hàng đầu 6 bài viết ở trang chủ', 'text_domain')
+            TOP_ADDRESS_HOME => __('Điểm đến hàng đầu 6 bài viết ở trang chủ', 'text_domain'),
+            FOOTER_CAFE => __('Footer cafe phê hot', 'text_domain'),
+            FOOTER_ADDRESS => __('Footer địa điểm hấp dẫn nhất', 'text_domain'),
         ));
     }
     add_action('init', 'agency_wp_my_menus');
@@ -225,6 +227,8 @@ function get_category_menu()
     ));
 }
 add_shortcode('catetory_menu', 'get_category_menu');
+
+
 
 /*
 * Show data for UI
@@ -399,62 +403,6 @@ add_action('wp_ajax_random', 'random_function');
 add_action('wp_ajax_nopriv_random', 'random_function');
 
 
-function category_function() {
-    if($_REQUEST["catName"] && !empty($_REQUEST["catName"]))
-    {
-        $args = array(
-            'post_type' => 'post',
-            'post_status'  => 'publish',
-            'category_name' => $_REQUEST["catName"],                                         
-            'posts_per_page' => 1,
-            'paged' => $_REQUEST["paged"],
-        );  
-        $the_query = new WP_Query( $args );
-        
-        while ( $the_query->have_posts() ) :
-            $the_query->the_post();
-            ?>
-                            <div class="col-md-3 h-custom-news-col-md-3" >
-                                <div class="bg-white m-2">
-                                    <div class="item mt-1 mb-1 post-7348 post type-post status-publish format-standard has-post-thumbnail hentry category-tin-tuc">
-                                        <a href="<?php the_permalink(); ?>">
-                                            <img src="<?php the_post_thumbnail_url($size) ?>" class="img-fluid wp-post-image" />
-                                        </a>
-                                        <div class="info">
-                                            <a class="post-title text-dark" href="<?php the_permalink(); ?>"><?php the_title();?></a>
-                                            <span><i class="fas fa-map-marker-alt"></i> </span>
-                                        </div>
-                                        <div class="meta">
-
-                                        <?php if( have_rows('represent_post', $post->ID) ): ?>
-
-                                            <?php while( have_rows('represent_post', $post->ID) ): the_row(); ?>
-
-                                                <?php 
-                                                    if(get_sub_field('comfirm_post'))
-                                                    {
-                                                        ?><span class="text-danger" style="color: green !important"><i class="far fa-check-circle"></i> Đã xác thực</span><?php
-                                                    } else {
-                                                        ?><span class="text-danger"><i class="far fa-check-circle"></i> Chưa xác thực</span><?php
-                                                    }
-                                                ?> 
-                                                <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i><?php the_sub_field('address_represent_post'); ?></span>
-                                            <?php endwhile; ?>
-
-                                        <?php endif; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-            <?php
-        endwhile;
-    }
-    die(); 
-}
-add_action('wp_ajax_category', 'category_function');
-add_action('wp_ajax_nopriv_category', 'category_function');
-
-
 function area_function() {
 
     if(!empty($_REQUEST["areaID"]) || !empty($_REQUEST["categoryID"]))
@@ -524,15 +472,113 @@ add_action('wp_ajax_area', 'area_function');
 add_action('wp_ajax_nopriv_area', 'area_function');
 
 
+function category_function() {
+    if($_REQUEST["catName"] && !empty($_REQUEST["catName"]))
+    {
+        $args = array(
+            'post_type' => 'post',
+            'post_status'  => 'publish',
+            'category_name' => $_REQUEST["catName"],                                         
+            'posts_per_page' => 24,
+            'paged' => $_REQUEST["paged"],
+        );  
+        $the_query = new WP_Query( $args );
+        
+        while ( $the_query->have_posts() ) :
+            $the_query->the_post();
+            ?>
+                            <div class="col-md-3 h-custom-news-col-md-3" >
+                                <div class="bg-white m-2">
+                                    <div class="item mt-1 mb-1 post-7348 post type-post status-publish format-standard has-post-thumbnail hentry category-tin-tuc">
+                                        <a href="<?php the_permalink(); ?>">
+                                            <img src="<?php the_post_thumbnail_url($size) ?>" class="img-fluid wp-post-image" />
+                                        </a>
+                                        <div class="info">
+                                            <a class="post-title text-dark" href="<?php the_permalink(); ?>"><?php the_title();?></a>
+                                            <span><i class="fas fa-map-marker-alt"></i> </span>
+                                        </div>
+                                        <div class="meta">
 
+                                        <?php if( have_rows('represent_post', $post->ID) ): ?>
 
+                                            <?php while( have_rows('represent_post', $post->ID) ): the_row(); ?>
 
+                                                <?php 
+                                                    if(get_sub_field('comfirm_post'))
+                                                    {
+                                                        ?><span class="text-danger" style="color: green !important"><i class="far fa-check-circle"></i> Đã xác thực</span><?php
+                                                    } else {
+                                                        ?><span class="text-danger"><i class="far fa-check-circle"></i> Chưa xác thực</span><?php
+                                                    }
+                                                ?> 
+                                                <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i><?php the_sub_field('address_represent_post'); ?></span>
+                                            <?php endwhile; ?>
 
+                                        <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            <?php
+        endwhile;
+    }
+    die(); 
+}
+add_action('wp_ajax_category', 'category_function');
+add_action('wp_ajax_nopriv_category', 'category_function');
 
+function handbook_function() {
+    if($_REQUEST["catName"] && !empty($_REQUEST["catName"]))
+    {
+        $args = array(
+            'post_type' => 'post',
+            'post_status'  => 'publish',
+            'category_name' => $_REQUEST["catSlug"],                                         
+            'posts_per_page' => 24,
+            'paged' => $_REQUEST["paged"],
+        );  
+        $the_query = new WP_Query( $args );
+        
+        while ( $the_query->have_posts() ) :
+            $the_query->the_post();
+            ?>
+                                 <div class="item p-1 mb-2 bg-light">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col-md-4 col-12">
+                                            <a href="<?php the_permalink(); ?>" class="d-block mr-0 mr-sm-2">
+                                                <img src="<?php the_post_thumbnail_url() ?>" class="img-fluid d-block w-100 wp-post-image"/>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-8 col-12">
+                                            <a class="post-title mb-2 mt-2 mt-sm-0" href="<?php the_permalink(); ?>">
+                                                <?php the_title()?>
+                                            </a>
+                                            <span class="d-block mb-2"> <?php the_excerpt()?></span>
+                                           
+                                           
+                                            <?php if( have_rows('represent_post', $post->ID) ): ?>
 
+                                                <?php while( have_rows('represent_post', $post->ID) ): the_row(); ?>
+                                                    <span class="entry-modified-time text-left"> <i class="far fa-user-circle"></i> <?php the_sub_field('address_represent_post'); ?> </span>
+                                                <?php endwhile; ?>
 
+                                            <?php endif; ?>
+                                            <span class="entry-category float-right"> <i class="far fa-folder"></i> <a href="<?php echo get_home_url(); ?>/<?php echo $category[0]->slug?>" rel="tag"><?php echo $_REQUEST["catName"]?></a> </span>
+                                        </div>
+                                    </div>
+                                </div>            
+            <?php
+        endwhile;
+    }
+    die(); 
+}
+add_action('wp_ajax_handbook', 'handbook_function');
+add_action('wp_ajax_nopriv_handbook', 'handbook_function');
 
-
+/** REGISTER OPTIONS ACF **/
+if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page(array('page_title'=>'Theme Configs','page_title'=>'Theme Configs','menu_slug'=>'acf-options-theme-options'));
+}
 
 
 // ======== Filter ======== \\
@@ -863,8 +909,20 @@ function ui_category_footer()
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             $url =  $menu_item->url;
-            $category = get_category($id);
-            $count = $category->category_count;     
+            $args =  array(
+                'post_type' => 'post',
+                'posts_per_page' => -1,
+                'post_status'   => 'publish',
+                'tax_query' => array(
+                    array (
+                        'taxonomy' => CATEGORY_AGENCY,
+                        'field' => 'term_id',
+                        'terms' => $id
+                    )
+                ),
+            );
+            $query = new WP_Query( $args);
+            $count= (int)$query->post_count;
 
             ?>
                 <li class="cat-item cat-item-13">
@@ -877,6 +935,74 @@ function ui_category_footer()
     }
 }
 add_shortcode('ui_category_footer', 'ui_category_footer');
+
+// theme_location footer cafe
+function ui_footer_cafe()
+{
+    $menu_name = FOOTER_CAFE;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+
+            $url =  $menu_item->url;
+            ?>
+                <div class="item">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-4 col-sm-4 col-md-4">
+                            <a href="<?php echo $menu_item-> url?>" class="post-thumbnail mr-2 d-block"> 
+                            
+                                <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $id ), 'thumbnail' ); ?>
+                                <img src="<?php echo $url?>" alt="<?php echo $title?>" class="img-fluid w-100 wp-post-image">
+                            </a>
+                        </div>
+                        <div class="col-8 col-sm-8 col-md-8">
+                            <a class="post-title text-white" href="<?php echo $menu_item-> url?>" rel="bookmark"> <?php echo $title?> </a>
+                        </div>
+                    </div>
+                </div>
+            <?php
+        }
+    }
+}
+add_shortcode('ui_footer_cafe', 'ui_footer_cafe');
+
+
+// theme_location footer address
+function ui_footer_address()
+{
+    $menu_name = FOOTER_ADDRESS;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+
+            $url =  $menu_item->url;
+            ?>
+
+                            <div class="item">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-4 col-sm-4 col-md-4">
+                                        <a href="<?php echo $menu_item-> url ?>" class="post-thumbnail mr-2 d-block">
+                                            <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $id ), 'thumbnail' ); ?>
+                                            <img  src="<?php echo $url?>" class="img-fluid w-100 wp-post-image"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-8 col-sm-8 col-md-8">
+                                        <a class="post-title text-white" href="<?php echo $menu_item-> url ?>" rel="bookmark"><?php echo $title?> </a>
+                                    </div>
+                                </div>
+                            </div>
+               
+            <?php
+        }
+    }
+}
+add_shortcode('ui_footer_address', 'ui_footer_address');
 
 // ====== Taxonomy category ======= \\
 function ui_taxonomy($attr)
