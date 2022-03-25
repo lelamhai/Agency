@@ -53,19 +53,6 @@
                     }
                     wp_reset_postdata();
                 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
                             
                         </div>
                         <div class="misha_loadmore btn-danger btn btn-block">Xem thêm</div>
@@ -73,7 +60,11 @@
                     <div class="col-xs-12 col-sm-12 col-md-4" style="height: auto !important; min-height: 0px !important;">
                         <div class="sidebar-wrap">
                             <h3>Bài viết nổi bật</h3>
-                            <div class="list mt-2 bg-white">
+
+                                <?php
+                                    do_shortcode('[ui_footer_hankbook]');
+                                ?>
+                            <!-- <div class="list mt-2 bg-white">
                                 <div class="row no-gutters">
                                     <div class="col-4">
                                         <a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/fils-cafe/" title="Fil’s Cafe – Quán cafe có không gian tổ chức tiệc họp mặt lý tưởng" class="transition">
@@ -194,55 +185,8 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
-                        <script async="" src="./Cẩm Nang - Địa Điểm Đà Nẵng_files/f(2).txt"></script>
-                        <ins
-                            class="adsbygoogle"
-                            style="display: block; height: 0px;"
-                            data-ad-client="ca-pub-9830062738315083"
-                            data-ad-slot="5589172750"
-                            data-ad-format="auto"
-                            data-full-width-responsive="true"
-                            data-adsbygoogle-status="done"
-                            data-ad-status="unfilled"
-                        >
-                            <ins
-                                id="aswift_1_expand"
-                                tabindex="0"
-                                title="Advertisement"
-                                aria-label="Advertisement"
-                                style="border: none; height: 0px; width: 350px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-table;"
-                            >
-                                <ins
-                                    id="aswift_1_anchor"
-                                    style="border: none; height: 0px; width: 350px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: block; overflow: hidden; opacity: 0;"
-                                >
-                                    <iframe
-                                        id="aswift_1"
-                                        name="aswift_1"
-                                        style="left: 0px; position: absolute; top: 0px; border: 0px; width: 350px; height: 0px;"
-                                        sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
-                                        width="350"
-                                        height="0"
-                                        frameborder="0"
-                                        marginwidth="0"
-                                        marginheight="0"
-                                        vspace="0"
-                                        hspace="0"
-                                        allowtransparency="true"
-                                        scrolling="no"
-                                        src="./Cẩm Nang - Địa Điểm Đà Nẵng_files/ads(1).html"
-                                        data-google-container-id="a!2"
-                                        data-google-query-id="CKPxuoWu4PYCFUcItwAdiqsJBQ"
-                                        data-load-complete="true"
-                                    ></iframe>
-                                </ins>
-                            </ins>
-                        </ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
                     </div>
                 </div>
             </div>

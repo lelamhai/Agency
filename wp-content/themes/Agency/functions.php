@@ -8,6 +8,7 @@ define('CATEGORY_MENU', 'category_menu');
 define('CATEGORY_SEARCH', 'category_search');
 define('TAGS', 'tags');
 define('TOP_ADDRESS_HOME', 'top_address_home');
+define('HANK_BOOK', 'hand_book');
 
 define('FOOTER_CAFE', 'footer_cafe');
 define('FOOTER_ADDRESS', 'footer_address');
@@ -29,7 +30,7 @@ $categoryLast = null;
  */
 function agency_regsiter_styles()
 {
-    $version = "1.0.4";
+    $version = "1.0.8";
     
     // ------------------- css ----------------- \\
     // style css
@@ -58,6 +59,12 @@ function agency_regsiter_styles()
 }
 add_action('wp_enqueue_scripts', 'agency_regsiter_styles');
 
+/**
+ * REGISTER OPTIONS ACF 
+ */
+if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page(array('page_title'=>'Theme Configs','page_title'=>'Theme Configs','menu_slug'=>'acf-options-theme-options'));
+}
 
 /**
  * Setup Images Size
@@ -133,6 +140,7 @@ function agency_taxonomy_category() {
 }
 add_action( 'init', 'agency_taxonomy_category' );
 
+
 /**
  * Menu Locations
  */
@@ -148,6 +156,7 @@ if (function_exists('wp_nav_menu')) {
             TOP_ADDRESS_HOME => __('Điểm đến hàng đầu 6 bài viết ở trang chủ', 'text_domain'),
             FOOTER_CAFE => __('Footer cafe phê hot', 'text_domain'),
             FOOTER_ADDRESS => __('Footer địa điểm hấp dẫn nhất', 'text_domain'),
+            HANK_BOOK => __('Cẩm nang bài viết nổi bật', 'text_domain'),
         ));
     }
     add_action('init', 'agency_wp_my_menus');
@@ -227,8 +236,6 @@ function get_category_menu()
     ));
 }
 add_shortcode('catetory_menu', 'get_category_menu');
-
-
 
 /*
 * Show data for UI
@@ -575,10 +582,7 @@ function handbook_function() {
 add_action('wp_ajax_handbook', 'handbook_function');
 add_action('wp_ajax_nopriv_handbook', 'handbook_function');
 
-/** REGISTER OPTIONS ACF **/
-if( function_exists('acf_add_options_page') ) {
-    acf_add_options_page(array('page_title'=>'Theme Configs','page_title'=>'Theme Configs','menu_slug'=>'acf-options-theme-options'));
-}
+
 
 
 // ======== Filter ======== \\
@@ -1004,6 +1008,42 @@ function ui_footer_address()
 }
 add_shortcode('ui_footer_address', 'ui_footer_address');
 
+// ============================================== HankBook ==================================\\
+function ui_footer_hankbook()
+{
+    $menu_name = HANK_BOOK;
+    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
+        $menu = wp_get_nav_menu_object($locations[$menu_name]);
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+        foreach ((array) $menu_items as $key => $menu_item) {
+            $title = $menu_item->title;
+            $id =  $menu_item->object_id;
+            $url =  $menu_item->url;
+            ?>
+                            <div class="list mt-2 bg-white">
+                                <div class="row no-gutters">
+                                    <div class="col-4">
+                                        <a href="<?php echo $menu_item-> url ?>" title="<?php echo $title?>" class="transition">
+                                            <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $id ), 'thumbnail' ); ?>
+                                            <img src="<?php echo $url?>" class="img-fluid wp-post-image" alt=""/>
+                                        </a>
+                                    </div>
+                                    <div class="col-8">
+                                        <a href="<?php echo $menu_item-> url ?>" title="<?php echo $title?>" class="d-block ml-2 text-danger transition">
+                                            <span><?php echo $title?></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+               
+            <?php
+        }
+    }
+}
+add_shortcode('ui_footer_hankbook', 'ui_footer_hankbook');
+
+
+
 // ====== Taxonomy category ======= \\
 function ui_taxonomy($attr)
 {
@@ -1065,7 +1105,9 @@ function ui_taxonomy($attr)
                                         <div class="bg-light m-1">
                                             <div class="item mt-1 mb-1 post-2020 post type-post status-publish format-standard has-post-thumbnail hentry category-quan-an-chay category-quan-com province-hai-chau">
                                                 <a href="<?php echo get_permalink($post->ID)?>">
-                                                    <img src="<?php echo get_the_post_thumbnail_url( $list[$index][$i], 'thumbnail' ); ?>" class="img-fluid wp-post-image"loading="lazy" />
+
+                                                     <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $list[$index][$i] ), 'thumbnail' ); ?>
+                                                    <img src="<?php echo $url?>" class="img-fluid wp-post-image"loading="lazy" />
                                                 </a>
                                                 <div class="info">
                                                     <a class="post-title text-dark" href="<?php echo get_permalink($post->ID)?>"><?php echo $post->post_title?></a>
@@ -1122,26 +1164,7 @@ function ui_taxonomy($attr)
             </div>
         <?php
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 }
 add_shortcode('ui_taxonomy', 'ui_taxonomy');
-
-
 
 ?>
