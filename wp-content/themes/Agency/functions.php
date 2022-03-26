@@ -30,7 +30,7 @@ $categoryLast = null;
  */
 function agency_regsiter_styles()
 {
-    $version = "1.0.9";
+    $version = "1.1.3";
     
     // ------------------- css ----------------- \\
     // style css

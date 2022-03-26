@@ -1,19 +1,9 @@
 <?php
 get_header();
-// $listCategory = wp_get_post_categories(get_the_ID());
-// var_dump($listCategory);exit;
-// var_dump(get_ancestors( 13, 'category' ));exit;
-
-// $category = get_the_category();
-// $firstCategory = $category[0]->cat_name;
-// var_dump($firstCategory);exit;
-
-
-
 ?>
 
-<?php
 
+<?php
     if ( have_posts() ) {
         $category = get_the_category();
         
@@ -51,40 +41,42 @@ get_header();
                                 <h2 class="h2 m-0">Nội dung chính</h2>
                                 <span class="d-block mt-1 mb-3">Mục lục nội dung tóm tắt</span>
                                 <ul class="list-unstyled nav flex-column">
-                                    <li>
-                                        <a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/ngap-tran-sac-xuan-cung-nice-home-coffee/#loi-kien-truc-doc-dao-hai-hoa" class=""><span>1</span> <b>Lối kiến trúc độc đáo, hài hòa</b></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://diadiemdanang.vn/goc-an-uong/quan-cafe/ngap-tran-sac-xuan-cung-nice-home-coffee/#khong-khi-xuan-khap-moi-ngoc-ngach-nice-home-coffee">
-                                            <span>2</span> <b>Không khí xuân khắp mọi ngóc ngách Nice Home Coffee</b>
-                                        </a>
-                                    </li>
+
+                                <?php if( have_rows('widget_post', $post->ID) ): ?>
+                                    <?php $count = 1; ?>
+                                    <?php while( have_rows('widget_post', $post->ID) ): the_row(); ?>
+                                            <li>
+                                                <a href="<?php echo "#agency".$count?>"><span><?php echo $count?></span> <b><?php echo get_sub_field('sidebar_post')?></b></a>
+                                            </li>
+                                            <?php $count ++; ?>
+                                    <?php endwhile; ?>
+
+                                <?php endif; ?>
+
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="bg-white p-2">
-                                <div class="item bg-light mb-1">
-                                    <div class="row">
 
                                         <?php if( have_rows('info_post', $post->ID) ): ?>
+                                            <div class="item bg-light mb-1">
+                                                <div class="row">
+                                                    <?php while( have_rows('info_post', $post->ID) ): the_row(); ?>
 
-                                            <?php while( have_rows('info_post', $post->ID) ): the_row(); ?>
+                                                        <?php 
+                                                        ?>
+                                                            <div class="col-12 col-md-6">
+                                                                <span class="d-block"> <i class="fas fa-map-marker-alt"></i> <?php echo get_sub_field('address_post')?> </span>
+                                                            </div>
+                                                            <div class="col-12 col-md-6">
+                                                                <span class="d-block">
+                                                                <i class="fas fa-bell"></i> <strong>Khoảng giá: </strong><?php echo get_sub_field('price_post')?>								</span>
+                                                            </div>
+                                                        <?php
+                                                        ?> 
+                                                    <?php endwhile; ?>
 
-                                                <?php 
-                                                   ?>
-                                                     <div class="col-12 col-md-6">
-                                                        <span class="d-block"> <i class="fas fa-map-marker-alt"></i> <?php echo get_sub_field('address_post')?> </span>
-                                                    </div>
-                                                    <div class="col-12 col-md-6">
-                                                        <span class="d-block">
-                                                        <i class="fas fa-bell"></i> <strong>Khoảng giá: </strong><?php echo get_sub_field('price_post')?>								</span>
-                                                    </div>
-                                                   <?php
-                                                ?> 
-                                            <?php endwhile; ?>
-
-                                        <?php endif; ?>
 
                                             
                                                     <div class="col-12 col-md-6">
@@ -123,10 +115,10 @@ get_header();
                                                             ?>     
                                                         </span>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
 
-
-                                    </div>
-                                </div>
                                 <div class="entry-content">
                                     <?php
                                         the_content();
@@ -235,7 +227,7 @@ get_header();
 
                             <div class="sidebar-wrap">
                                 <div class="">
-                                    <h3>Địa điểm khác ở Quận Hải Châu</h3>
+                                    <h3>Địa điểm khác ở <?php echo $category[0]->name?></h3>
 
                                     <?php
                                         $args1 = array(
@@ -243,6 +235,7 @@ get_header();
                                             'post_status'  => 'publish',
                                             'category_name' => $category[0]->slug,                                         
                                             'posts_per_page' => 10,
+                                            'post__not_in'      => array(get_the_ID()),
                                             'meta_query' => array(
                                                 array(
                                                 'key' => 'hot-post',
@@ -286,28 +279,6 @@ get_header();
 
                     </div>
                 </main>
-            </div>
-            <div class="d-none">
-                <span itemprop="priceRange">Liên hệ</span>
-                <span itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
-                    <span class="label label-warning">Xếp hạng</span>
-                    <span class="average-rating" itemprop="ratingValue">5</span>
-                    5 - Dựa trên <span itemprop="reviewCount">5</span> đánh giá
-                </span>
-                <div itemtype="http://schema.org/PostalAddress" itemscope="" itemprop="address">
-                    <div itemprop="streetAddress">Hoà Khương, Hoà Vang, Đà Nẵng</div>
-                    <div>
-                        <span itemprop="addressLocality">Đà Nẵng</span>,
-                        <span itemprop="addressRegion"></span>
-                        <span itemprop="postalCode">550000</span>
-                    </div>
-                </div>
-                <span itemprop="telephone"></span>
-                <div itemtype="http://schema.org/GeoCoordinates" itemscope="" itemprop="geo">
-                    <meta itemprop="latitude" content="" />
-                    <meta itemprop="longitude" content="" />
-                </div>
-                <img itemprop="image" class="pic-place" src="https://diadiemdanang.vn/goc-an-uong/quan-cafe/ngap-tran-sac-xuan-cung-nice-home-coffee/" alt="Ngập tràn sắc xuân cùng Nice Home Coffee" />
             </div>
         </div>
             <?php
