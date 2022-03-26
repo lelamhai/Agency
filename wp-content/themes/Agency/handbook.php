@@ -60,9 +60,45 @@
                     <div class="col-xs-12 col-sm-12 col-md-4" style="height: auto !important; min-height: 0px !important;">
                         <div class="sidebar-wrap">
                             <h3>Bài viết nổi bật</h3>
-
                                 <?php
-                                    do_shortcode('[ui_footer_hankbook]');
+                                    $args1 = array(
+                                        'post_type' => 'post',
+                                        'post_status'  => 'publish',
+                                        'category_name' => $category[0]->slug,                                         
+                                        'posts_per_page' => 10,
+                                        'meta_query' => array(
+                                            array(
+                                              'key' => 'hot-post',
+                                              'value' => '1',
+                                              'compare' => '==' // not really needed, this is the default
+                                            )
+                                        )
+                                    );  
+                                    $the_query_hot = new WP_Query( $args1 );
+
+                                    if ( $the_query_hot->have_posts() ) {
+                                        while ( $the_query_hot->have_posts() ) {
+                                            $the_query_hot->the_post();
+                                            ?>
+                                            <div class="list mt-2 bg-white">
+                                                <div class="row no-gutters">
+                                                    <div class="col-4">
+                                                        <a href="<?php the_permalink() ?>" title="<?php the_title()?>" class="transition">
+                                                            <img src="<?php echo the_post_thumbnail_url()?>" class="img-fluid wp-post-image" alt=""/>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <a href="<?php the_permalink() ?>" title="<?php the_title()?>" class="d-block ml-2 text-danger transition">
+                                                            <span><?php echo the_title()?></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+                                    } else {
+                                    }
+                                    wp_reset_postdata();
                                 ?>
                         </div>
                     </div>
