@@ -71,8 +71,9 @@ if( function_exists('acf_add_options_page') ) {
  */
 function agency_imagesize() {
     add_theme_support('post-thumbnails');
-    // add_image_size('image-post-news', 555, 450, true);
-    // add_image_size('image-post-news', 278, 210, true);
+    // add_image_size('footer_left_CN', 117, 88, true); // footer // left cam nang
+    // add_image_size('content_CN', 233, 156, true); // content cang nang
+    // add_image_size('header', 270, 180, true); // header// taxonomy
   
 }
 add_action('after_setup_theme', 'agency_imagesize');
@@ -156,7 +157,6 @@ if (function_exists('wp_nav_menu')) {
             TOP_ADDRESS_HOME => __('Điểm đến hàng đầu 6 bài viết ở trang chủ', 'text_domain'),
             FOOTER_CAFE => __('Footer cafe phê hot', 'text_domain'),
             FOOTER_ADDRESS => __('Footer địa điểm hấp dẫn nhất', 'text_domain'),
-            HANK_BOOK => __('Cẩm nang bài viết nổi bật', 'text_domain'),
         ));
     }
     add_action('init', 'agency_wp_my_menus');
@@ -351,8 +351,7 @@ function load_data_post_header()
                 <div class="item mt-1 mb-1 post-3719 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-quan-cafe province-hai-chau">
                     <a href="<?php the_permalink()?>">
                     <img
-                        src="<?php the_post_thumbnail_url()?>"
-                        class="img-fluid wp-post-image"
+                        src="<?php the_post_thumbnail_url()?>" class="img-fluid wp-post-image"
                         />
                     </a>
                     <div class="info">
@@ -442,7 +441,7 @@ function area_function() {
                             <div class="bg-white m-2">
                                 <div class="item mt-1 mb-1 post-7348 post type-post status-publish format-standard has-post-thumbnail hentry category-tin-tuc">
                                     <a href="<?php the_permalink(); ?>">
-                                        <img src="<?php the_post_thumbnail_url($size) ?>" class="img-fluid wp-post-image" />
+                                        <img src="<?php the_post_thumbnail_url() ?>" class="img-fluid wp-post-image" />
                                     </a>
                                     <div class="info">
                                         <a class="post-title text-dark" href="<?php the_permalink(); ?>"><?php the_title();?></a>
@@ -498,7 +497,7 @@ function category_function() {
                                 <div class="bg-white m-2">
                                     <div class="item mt-1 mb-1 post-7348 post type-post status-publish format-standard has-post-thumbnail hentry category-tin-tuc">
                                         <a href="<?php the_permalink(); ?>">
-                                            <img src="<?php the_post_thumbnail_url($size) ?>" class="img-fluid wp-post-image" />
+                                            <img src="<?php the_post_thumbnail_url() ?>" class="img-fluid wp-post-image" />
                                         </a>
                                         <div class="info">
                                             <a class="post-title text-dark" href="<?php the_permalink(); ?>"><?php the_title();?></a>
@@ -560,7 +559,7 @@ function handbook_function() {
                                             <a class="post-title mb-2 mt-2 mt-sm-0" href="<?php the_permalink(); ?>">
                                                 <?php the_title()?>
                                             </a>
-                                            <span class="d-block mb-2"> <?php the_excerpt()?></span>
+                                            <span class="d-block mb-2"> <?php the_title()?></span>
                                            
                                            
                                             <?php if( have_rows('represent_post', $post->ID) ): ?>
@@ -957,9 +956,8 @@ function ui_footer_cafe()
                     <div class="row no-gutters align-items-center">
                         <div class="col-4 col-sm-4 col-md-4">
                             <a href="<?php echo $menu_item-> url?>" class="post-thumbnail mr-2 d-block"> 
-                            
-                                <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $id ), 'thumbnail' ); ?>
-                                <img src="<?php echo $url?>" alt="<?php echo $title?>" class="img-fluid w-100 wp-post-image">
+                                <?php $img_atts = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), 'thumbnail' ); ?>
+                                <img src="<?php echo $img_atts[0]?>" alt="<?php echo $title?>" class="img-fluid w-100 wp-post-image">
                             </a>
                         </div>
                         <div class="col-8 col-sm-8 col-md-8">
@@ -992,8 +990,8 @@ function ui_footer_address()
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-4 col-sm-4 col-md-4">
                                         <a href="<?php echo $menu_item-> url ?>" class="post-thumbnail mr-2 d-block">
-                                            <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $id ), 'thumbnail' ); ?>
-                                            <img  src="<?php echo $url?>" class="img-fluid w-100 wp-post-image"/>
+                                            <?php $img_atts = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), 'thumbnail' ); ?>
+                                            <img  src="<?php echo $img_atts[0]?>" class="img-fluid w-100 wp-post-image"/>
                                         </a>
                                     </div>
                                     <div class="col-8 col-sm-8 col-md-8">
@@ -1007,42 +1005,6 @@ function ui_footer_address()
     }
 }
 add_shortcode('ui_footer_address', 'ui_footer_address');
-
-// ============================================== HankBook ==================================\\
-function ui_footer_hankbook()
-{
-    $menu_name = HANK_BOOK;
-    if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) {
-        $menu = wp_get_nav_menu_object($locations[$menu_name]);
-        $menu_items = wp_get_nav_menu_items($menu->term_id);
-        foreach ((array) $menu_items as $key => $menu_item) {
-            $title = $menu_item->title;
-            $id =  $menu_item->object_id;
-            $url =  $menu_item->url;
-            ?>
-                            <div class="list mt-2 bg-white">
-                                <div class="row no-gutters">
-                                    <div class="col-4">
-                                        <a href="<?php echo $menu_item-> url ?>" title="<?php echo $title?>" class="transition">
-                                            <?php $url = wp_get_attachment_url( get_post_thumbnail_id( $id ), 'thumbnail' ); ?>
-                                            <img src="<?php echo $url?>" class="img-fluid wp-post-image" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="col-8">
-                                        <a href="<?php echo $menu_item-> url ?>" title="<?php echo $title?>" class="d-block ml-2 text-danger transition">
-                                            <span><?php echo $title?></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-               
-            <?php
-        }
-    }
-}
-add_shortcode('ui_footer_hankbook', 'ui_footer_hankbook');
-
-
 
 // ====== Taxonomy category ======= \\
 function ui_taxonomy($attr)

@@ -25,7 +25,7 @@
                                 <div class="bg-white m-2">
                                     <div class="item mt-1 mb-1 post-7348 post type-post status-publish format-standard has-post-thumbnail hentry category-tin-tuc">
                                         <a href="<?php the_permalink(); ?>">
-                                            <img src="<?php the_post_thumbnail_url($size) ?>" class="img-fluid wp-post-image" />
+                                            <img src="<?php the_post_thumbnail_url('Medium') ?>" class="img-fluid wp-post-image" />
                                         </a>
                                         <div class="info">
                                             <a class="post-title text-dark" href="<?php the_permalink(); ?>"><?php the_title();?></a>
