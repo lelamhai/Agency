@@ -30,7 +30,7 @@ $categoryLast = null;
  */
 function agency_regsiter_styles()
 {
-    $version = "1.1.3";
+    $version = "1.0.9";
     
     // ------------------- css ----------------- \\
     // style css
@@ -242,7 +242,6 @@ add_shortcode('catetory_menu', 'get_category_menu');
 */
 function ui_category_desktop()
 {
-    // var_dump($categoryLast);exit;
     $first = true;
     $last = 0;
     $index = 0;
@@ -254,7 +253,6 @@ function ui_category_desktop()
         $last = count($menu_items) - 1;
 
         foreach ((array) $menu_items as $key => $menu_item) {
-            // var_dump($menu_item);exit();
             $title = $menu_item->title;
             $id =  $menu_item->object_id;
             if($last == $index)
@@ -334,11 +332,13 @@ function load_data_post_header()
     $the_query = new WP_Query( array(
         'post_type' => 'post',
         'posts_per_page' => 6,
+        'post_status' => 'publish',
+        'category_name' => 'goc-an-uong',
         'tax_query' => array(
             array (
-                'taxonomy' => CATEGORY_AGENCY,
+                'taxonomy' => 'category_agency',
                 'field' => 'term_id',
-                'terms' => $categoryLast->object_id
+                'terms' => 11
             )
         ),
     ) );
