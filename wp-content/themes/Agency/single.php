@@ -34,7 +34,7 @@ get_header();
 
 
             <div class="container-fluid" style="height: auto !important;">
-                <main id="main" class="single-wrap" role="main" style="height: auto !important;">
+                <main id="main" class="single-wrap h-custom-single-wrap" role="main" style="height: auto !important;">
                     <div class="row" style="height: auto !important;">
                         <div class="col-md-3">
                             <div class="table-of-contents box-shadow p-3 bg-white">
@@ -50,7 +50,6 @@ get_header();
                                             </li>
                                             <?php $count ++; ?>
                                     <?php endwhile; ?>
-
                                 <?php endif; ?>
 
                                 </ul>
@@ -58,67 +57,109 @@ get_header();
                         </div>
                         <div class="col-md-6">
                             <div class="bg-white p-2">
+                                    <?php
+                                        $eat_drink = get_field('eatdrink_post');
+                                        if($eat_drink)
+                                        {
+                                            ?>
+                                                <div class="item bg-light mb-1">
+                                                    <div class="row">
+                                                        <?php if( have_rows('info_post', $post->ID) ): ?>
+                                                            <?php while( have_rows('info_post', $post->ID) ): the_row(); ?>
 
-                                        <?php if( have_rows('info_post', $post->ID) ): ?>
-                                            <div class="item bg-light mb-1">
-                                                <div class="row">
-                                                    <?php while( have_rows('info_post', $post->ID) ): the_row(); ?>
+                                                                <?php 
+                                                                ?>
+                                                                    <div class="col-12 col-md-6">
+                                                                        <span class="d-block"> <i class="fas fa-map-marker-alt"></i> <?php echo get_sub_field('address_post')?> </span>
+                                                                    </div>
+                                                                    <div class="col-12 col-md-6">
+                                                                        <span class="d-block">
+                                                                        <i class="fas fa-bell"></i> <strong>Khoảng giá: </strong><?php echo get_sub_field('price_post')?>								</span>
+                                                                    </div>
+                                                                <?php
+                                                                ?> 
+                                                            <?php endwhile; ?>
 
-                                                        <?php 
-                                                        ?>
+
+                                                    
                                                             <div class="col-12 col-md-6">
-                                                                <span class="d-block"> <i class="fas fa-map-marker-alt"></i> <?php echo get_sub_field('address_post')?> </span>
-                                                            </div>
-                                                            <div class="col-12 col-md-6">
-                                                                <span class="d-block">
-                                                                <i class="fas fa-bell"></i> <strong>Khoảng giá: </strong><?php echo get_sub_field('price_post')?>								</span>
-                                                            </div>
-                                                        <?php
-                                                        ?> 
-                                                    <?php endwhile; ?>
+                                                                <span class="d-block"> <i class="fas fa-award"></i> <strong>Danh mục:</strong> 
 
+                                                                    <?php 
+                                                                        $last = count($termsCate) - 1;
+                                                                        $first = 0;
+                                                                        $index = 0;
+
+                                                                        foreach ( $termsCate as $term ) {
+                                                                            if($list != 0 || $index != $last)
+                                                                            {
+                                                                                ?>
+                                                                                    <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a><span class="comma">,</span>
+                                                                                <?php
+                                                                            } else {
+                                                                                ?>
+                                                                                <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a>
+                                                                            <?php
+                                                                            }
+                                                                            $index ++;
+                                                                        }
+                                                                    ?> 
+                                                                </span>
+                                                            </div>
+                                                        
 
                                             
-                                                    <div class="col-12 col-md-6">
-                                                        <span class="d-block"> <i class="fas fa-award"></i> <strong>Danh mục:</strong> 
-                                                            <?php 
-                                                                foreach ( $termsCate as $term ) {
-                                                                    ?>
-                                                                         <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a> 
-                                                                    <?php
-                                                                }
-                                                            ?> 
-                                                        </span>
-                                                    </div>
-                                                
+                                                            <div class="col-12 col-md-6">
+                                                                <span class="d-block"> <i class="fas fa-map-marker-alt"></i> <strong>Khu vực:</strong>
+                                                                    <?php 
+                                                                        $last = count($termsArea) - 1;
+                                                                        $first = 0;
+                                                                        $index = 0;
+                                                                        foreach ( $termsArea as $term ) {
+                                                                            if($list != 0 || $index != $last)
+                                                                            {
+                                                                                ?>
+                                                                                    <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a><span class="comma">,</span>
+                                                                                <?php
+                                                                            } else {
+                                                                                ?>
+                                                                                    <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a>
+                                                                                <?php
+                                                                            }
+                                                                            $index ++;
+                                                                        }
+                                                                    ?>           
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-12 col-md-12">
+                                                                <span class="d-block"> <i class="fas fa-tags"></i> <strong>Thể loại:</strong> 
+                                                                    <?php 
+                                                                        $last = count($termsTags) - 1;
+                                                                        $first = 0;
+                                                                        $index = 0;
 
-                                       
-                                                    <div class="col-12 col-md-6">
-                                                        <span class="d-block"> <i class="fas fa-map-marker-alt"></i> <strong>Khu vực:</strong>
-                                                            <?php 
-                                                                foreach ( $termsArea as $term ) {
-                                                                        ?>
-                                                                            <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a> 
-                                                                        <?php
-                                                                    }
-                                                            ?>           
-                                                        </span>
-                                                    </div>
-                                                    <div class="col-12 col-md-12">
-                                                        <span class="d-block"> <i class="fas fa-tags"></i> <strong>Thể loại:</strong> 
-                                                            <?php 
-                                                                foreach ( $termsTags as $term ) {
-                                                                    ?>
-                                                                        <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a> 
-                                                                    <?php
-                                                                }
-                                                            ?>     
-                                                        </span>
+                                                                        foreach ( $termsTags as $term ) {
+                                                                            if($list != 0 || $index != $last)
+                                                                            {
+                                                                                ?>
+                                                                                    <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a><span class="comma">,</span>
+                                                                                <?php
+                                                                            } else {
+                                                                                ?>
+                                                                                    <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a> 
+                                                                                <?php
+                                                                            }
+                                                                            $index ++;
+                                                                        }
+                                                                    ?>     
+                                                                </span>
+                                                            </div>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        <?php endif; ?>
-
+                                            <?php
+                                        }
+                                    ?>
                                 <div class="entry-content">
                                     <?php
                                         the_content();
@@ -160,7 +201,7 @@ get_header();
                                             </div>
                                             <div class="col-md-10 col-8">
                                                 <strong class="author-name"><?php echo get_sub_field('username_post')?></strong>
-                                                <span class="author-description d-block mt-1">Thành viên <?php echo get_sub_field('address_represent_post') ?></span>
+                                                <span class="author-description d-block mt-1"><?php echo get_sub_field('address_represent_post') ?></span>
                                             </div>
 
                                     <?php endwhile; ?>
