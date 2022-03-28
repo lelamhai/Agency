@@ -6,7 +6,7 @@ get_header();
 <?php
     if ( have_posts() ) {
         $category = get_the_category();
-        
+
 		while ( have_posts() ) {
 			the_post();
             $termsCate  = get_the_terms( get_the_ID(), "category_agency" );
@@ -57,7 +57,7 @@ get_header();
                         </div>
                         <div class="col-md-6">
                             <div class="bg-white p-2">
-                                
+
                             <?php if( have_rows('has_eatdrink_post', $post->ID) ): ?>
                                     <?php while( have_rows('has_eatdrink_post', $post->ID) ): the_row(); ?>
                                         <?php
@@ -66,17 +66,17 @@ get_header();
                                                 ?>
                                                 <div class="item bg-light mb-1">
                                                     <div class="row">
-  
+
 
                                                         <div class="col-12 col-md-6">
                                                             <span class="d-block"> <i class="fas fa-map-marker-alt"></i> <?php echo get_sub_field('address_post')?> </span>
                                                         </div>
-                                                        
+
 
                                                         <div class="col-12 col-md-6">
-                                                            <span class="d-block"> <i class="fas fa-award"></i> <strong>Danh mục:</strong> 
+                                                            <span class="d-block"> <i class="fas fa-award"></i> <strong>Danh mục:</strong>
 
-                                                                <?php 
+                                                                <?php
                                                                 if($termsCate)
                                                                 {
                                                                     $last = count($termsCate) - 1;
@@ -97,16 +97,16 @@ get_header();
                                                                             $index ++;
                                                                         }
                                                                     }
-                                                                    ?> 
+                                                                    ?>
                                                                 </span>
                                                         </div>
-                                                        
+
                                                         <div class="col-12 col-md-6"><span class="d-block"> <i class="fas fa-bell"></i> <strong>Khoảng giá: </strong><?php echo get_sub_field('price_post')?> </span>                            </span>
                                                         </div>
 
                                                         <div class="col-12 col-md-6">
                                                                 <span class="d-block"> <i class="fas fa-map-marker-alt"></i> <strong>Khu vực:</strong>
-                                                                    <?php 
+                                                                    <?php
                                                                         if($termsArea)
                                                                         {
                                                                             $last = count($termsArea) - 1;
@@ -126,14 +126,14 @@ get_header();
                                                                                 $index ++;
                                                                             }
                                                                         }
-                                                                    ?>           
+                                                                    ?>
                                                                 </span>
                                                             </div>
 
 
                                                             <div class="col-12 col-md-12">
-                                                                <span class="d-block"> <i class="fas fa-tags"></i> <strong>Thể loại:</strong> 
-                                                                    <?php 
+                                                                <span class="d-block"> <i class="fas fa-tags"></i> <strong>Thể loại:</strong>
+                                                                    <?php
                                                                         if($termsTags)
                                                                         {
                                                                             $last = count($termsTags) - 1;
@@ -148,13 +148,13 @@ get_header();
                                                                                     <?php
                                                                                 } else {
                                                                                     ?>
-                                                                                        <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a> 
+                                                                                        <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a>
                                                                                     <?php
                                                                                 }
                                                                                 $index ++;
                                                                             }
                                                                         }
-                                                                    ?>     
+                                                                    ?>
                                                                 </span>
                                                             </div>
 
@@ -162,9 +162,9 @@ get_header();
                                                     </div>
                                                 </div>
                                                 <?php
-                                            } 
+                                            }
                                         ?>
-                                                           
+
                                     <?php endwhile; ?>
                                 <?php endif; ?>
 
@@ -173,21 +173,25 @@ get_header();
                                         the_content();
                                     ?>
                                 </div>
-                                <?php 
+                                <?php
                                     $images = get_field('gallery_post');
+                                    
                                     if( $images ): ?>
 
                                         <div class="gallery-full">
                                             <div class="row no-gutters">
-                                                 <?php foreach( $images as $image_id ): ?>
-                                                        <div class="col-12 col-md-3">
-                                                            <div class="item m-1 m-sm-2">
-                                                                <a href="<?php echo $image_id["url"]?>" title="t<?php the_title()?>" data-fancybox="group" data-caption="">
-                                                                    <img src="<?php echo $image_id['sizes']['thumbnail']?>" alt="<?php the_title()?>" class="img-fluid" />
-                                                                </a>
-                                                            </div>
+                                                <?php foreach( $images as $image_id ): ?>
+                                                    <div class="col-12 col-md-3">
+                                                        <div class="item m-1 m-sm-2">
+                                                            <a href="<?php echo $image_id["url"]?>" title="<?php the_title()?>" data-fancybox="group" data-caption="">
+                                                                <img src="<?php echo $image_id['url']?>" alt="<?php the_title()?>" class="img-fluid">
+                                                            </a>
                                                         </div>
+                                                    </div>
+
                                                 <?php endforeach; ?>
+
+
                                             </div>
                                         </div>
                                 <?php endif; ?>
@@ -217,7 +221,7 @@ get_header();
 
                                 </div>
                             </div>
-                            
+
                             <div class="related-post mt-4">
                                 <div class="page-wrap">
                                     <h3>Địa điểm khác</h3>
@@ -228,10 +232,10 @@ get_header();
                                             $args1 = array(
                                                 'post_type' => 'post',
                                                 'post_status'  => 'publish',
-                                                'category_name' => $category[0]->slug,                                         
+                                                'category_name' => $category[0]->slug,
                                                 'posts_per_page' => 10,
                                                 'post__not_in'   => array(get_the_ID()),
-                                            );  
+                                            );
                                             $the_query_hot = new WP_Query( $args1 );
 
                                             if ( $the_query_hot->have_posts() ) {
@@ -261,7 +265,7 @@ get_header();
                                             }
                                             wp_reset_postdata();
                                         ?>
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +280,7 @@ get_header();
                                         $args1 = array(
                                             'post_type' => 'post',
                                             'post_status'  => 'publish',
-                                            'category_name' => $category[0]->slug,                                         
+                                            'category_name' => $category[0]->slug,
                                             'posts_per_page' => 10,
                                             'post__not_in'      => array(get_the_ID()),
                                             'meta_query' => array(
@@ -286,8 +290,8 @@ get_header();
                                                 'compare' => '==' // not really needed, this is the default
                                                 )
                                             )
-                                            
-                                        );  
+
+                                        );
                                         $the_query_hot = new WP_Query( $args1 );
 
                                         if ( $the_query_hot->have_posts() ) {
@@ -299,7 +303,7 @@ get_header();
                                                             <div class="row no-gutters">
                                                                 <div class="col-4">
                                                                 <a href="<?php the_permalink() ?>" title="<?php the_title()?>" class="transition">
-                                                                    <img  src="<?php echo the_post_thumbnail_url()?>"  class="img-fluid wp-post-image" alt="<?php the_title()?>">				                              			 
+                                                                    <img  src="<?php echo the_post_thumbnail_url()?>"  class="img-fluid wp-post-image" alt="<?php the_title()?>">
                                                                 </a>
                                                                 </div>
                                                                 <div class="col-8">
@@ -318,7 +322,7 @@ get_header();
                                         }
                                         wp_reset_postdata();
                                     ?>
-                                  
+
                                 </div>
                             </div>
                          </div>
@@ -336,4 +340,4 @@ get_header();
 
 <?php
 get_footer();
-?>  
+?>

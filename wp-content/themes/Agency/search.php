@@ -1,9 +1,4 @@
 <?php
-/**
-* Template Name: Search
-*/
-?>
-<?php
     get_header();
     $key = "";
     if($_GET['s'] && !empty($_GET['s']))
@@ -62,7 +57,7 @@
                                                     ?><span class="text-danger"><i class="far fa-check-circle"></i> Chưa xác thực</span><?php
                                                 }
                                             ?> 
-                                            <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i><?php the_sub_field('address_represent_post'); ?></span>
+                                            <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i> <?php the_sub_field('address_represent_post'); ?></span>
                                         <?php endwhile; ?>
                                     <?php endif; ?>
                                     </div>

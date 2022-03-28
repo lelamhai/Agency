@@ -43,6 +43,7 @@ function agency_regsiter_styles()
     wp_enqueue_style('agency-owl.carousel', get_template_directory_uri() . "/assets/css/owl.carousel.min.css", array(), $version);
     wp_enqueue_style('agency-owl.theme.default.min', get_template_directory_uri() . "/assets/css/owl.theme.default.min.css", array(), $version);
     wp_enqueue_style('agency-fontawesome', get_template_directory_uri() . "/assets/css/fontawesome.css", array(), $version);
+    wp_enqueue_style('agency-fancybox', get_template_directory_uri() . "/assets/css/jquery.fancybox.min.css", array(), $version);
     
     // Fonts
     wp_enqueue_style('agency-solid', get_template_directory_uri() . "/assets/css/solid.css", array(), $version);
@@ -54,6 +55,7 @@ function agency_regsiter_styles()
     wp_enqueue_script('agency-jquery1.12.4.min', get_template_directory_uri() . "/assets/js/jquery1.12.4.min.js", array(), $version, true);
     wp_enqueue_script('agency-bootstrap.min', get_template_directory_uri() . "/assets/js/bootstrap.min.js", array(), $version, true);
     wp_enqueue_script('agency-owl.carousel.min', get_template_directory_uri() . "/assets/js/owl.carousel.min.js", array(), $version, true);
+    wp_enqueue_script('agency-fancybox', get_template_directory_uri() . "/assets/js/jquery.fancybox.min.js", array(), $version, true);
     wp_enqueue_script('agency-custom', get_template_directory_uri() . "/assets/js/custom.js", array(), $version, true);
     wp_enqueue_script('agency-main', get_template_directory_uri() . "/assets/js/main.js", array(), $version, true);
 }
@@ -130,7 +132,7 @@ function agency_taxonomy_category() {
 		'post',
 		array(
 			'label' => __( 'Agency Category' ),
-            'rewrite' => array('slug' => 'category'),
+            'rewrite' => array('slug' => 'khu-vuc'),
 			'hierarchical' => true,
             'show_in_rest' => true,
             'show_ui'           => true,
@@ -461,7 +463,7 @@ function area_function() {
                                                     ?><span class="text-danger"><i class="far fa-check-circle"></i> Chưa xác thực</span><?php
                                                 }
                                             ?> 
-                                            <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i><?php the_sub_field('address_represent_post'); ?></span>
+                                            <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"> </i><?php the_sub_field('address_represent_post'); ?></span>
                                         <?php endwhile; ?>
 
                                     <?php endif; ?>
@@ -517,7 +519,7 @@ function category_function() {
                                                         ?><span class="text-danger"><i class="far fa-check-circle"></i> Chưa xác thực</span><?php
                                                     }
                                                 ?> 
-                                                <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i><?php the_sub_field('address_represent_post'); ?></span>
+                                                <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i> <?php the_sub_field('address_represent_post'); ?></span>
                                             <?php endwhile; ?>
 
                                         <?php endif; ?>
@@ -1099,7 +1101,7 @@ function ui_taxonomy($attr)
                                                                     ?><span class="text-danger"><i class="far fa-check-circle"></i> Chưa xác thực</span><?php
                                                                 }
                                                             ?> 
-                                                            <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i><?php the_sub_field('address_represent_post'); ?></span>
+                                                            <span class="d-inline ml-3 float-right"><i class="far fa-user-circle"></i> <?php the_sub_field('address_represent_post'); ?></span>
                                                         <?php endwhile; ?>
 
                                                     <?php endif; ?>
