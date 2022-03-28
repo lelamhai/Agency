@@ -30,7 +30,7 @@ $categoryLast = null;
  */
 function agency_regsiter_styles()
 {
-    $version = "1.0.9";
+    $version = "1.1.9";
     
     // ------------------- css ----------------- \\
     // style css
@@ -115,7 +115,7 @@ function agency_taxonomy_tags() {
 		'post',
 		array(
 			'label' => __( 'Agency Tags' ),
-            'rewrite' => array('slug' => 'tags'),
+            'rewrite' => array('slug' => 'the-loai'),
 			'hierarchical' => true,
             'show_in_rest' => true,
             'show_ui'           => true,
@@ -132,7 +132,7 @@ function agency_taxonomy_category() {
 		'post',
 		array(
 			'label' => __( 'Agency Category' ),
-            'rewrite' => array('slug' => 'khu-vuc'),
+            'rewrite' => array('slug' => 'danh-muc'),
 			'hierarchical' => true,
             'show_in_rest' => true,
             'show_ui'           => true,

@@ -13,49 +13,59 @@
             <div class="container" style="height: auto !important;">
                 <div class="row" style="height: auto !important;">
                     <div class="col-md-8">
+
                         <div class="blog-wrap"id="h-custom-blog-wrap"> 
 
-
-
-                <?php
-                    if ( $the_query->have_posts() ) {
-                        while ( $the_query->have_posts() ) {
-                            $the_query->the_post();
-                            ?>
-                                <div class="item p-1 mb-2 bg-light">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-md-4 col-12">
-                                            <a href="<?php the_permalink(); ?>" class="d-block mr-0 mr-sm-2">
-                                                <img src="<?php the_post_thumbnail_url() ?>" class="img-fluid d-block w-100 wp-post-image"/>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-8 col-12">
-                                            <a class="post-title mb-2 mt-2 mt-sm-0" href="<?php the_permalink(); ?>">
-                                                <?php the_title()?>
-                                            </a>
-                                            <span class="d-block mb-2"> <?php the_excerpt()?></span>
-                                           
-                                           
-                                            <?php if( have_rows('represent_post', $post->ID) ): ?>
-
-                                                <?php while( have_rows('represent_post', $post->ID) ): the_row(); ?>
-                                                    <span class="entry-modified-time text-left"> <i class="far fa-user-circle"></i> <?php the_sub_field('address_represent_post'); ?> </span>
-                                                <?php endwhile; ?>
-
-                                            <?php endif; ?>
-                                            <span class="entry-category float-right"> <i class="far fa-folder"></i> <a href="<?php echo get_home_url(); ?>/<?php echo $category[0]->slug?>" rel="tag"><?php echo $category[0]->name?></a> </span>
-                                        </div>
-                                    </div>
-                                </div>
                             <?php
-                        }
-                    } else {
-                    }
-                    wp_reset_postdata();
-                ?>
+                                
+                                if ( $the_query->have_posts() ) {
+                                    while ( $the_query->have_posts() ) {
+                                        $the_query->the_post();
+                                        ?>
+                                            <div class="item p-1 mb-2 bg-light">
+                                                <div class="row align-items-center no-gutters">
+                                                    <div class="col-md-4 col-12">
+                                                        <a href="<?php the_permalink(); ?>" class="d-block mr-0 mr-sm-2">
+                                                            <img src="<?php the_post_thumbnail_url() ?>" class="img-fluid d-block w-100 wp-post-image"/>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-8 col-12">
+                                                        <a class="post-title mb-2 mt-2 mt-sm-0" href="<?php the_permalink(); ?>">
+                                                            <?php the_title()?>
+                                                        </a>
+                                                        <span class="d-block mb-2"> <?php the_excerpt()?></span>
+                                                    
+                                                    
+                                                        <?php if( have_rows('represent_post', $post->ID) ): ?>
+
+                                                            <?php while( have_rows('represent_post', $post->ID) ): the_row(); ?>
+                                                                <span class="entry-modified-time text-left"> <i class="far fa-user-circle"></i> <?php the_sub_field('address_represent_post'); ?> </span>
+                                                            <?php endwhile; ?>
+
+                                                        <?php endif; ?>
+                                                        <span class="entry-category float-right"> <i class="far fa-folder"></i> <a href="<?php echo get_home_url(); ?>/<?php echo $category[0]->slug?>" rel="tag"><?php echo $category[0]->name?></a> </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php
+                                    }
+                                } else {
+                                    echo "Chưa có dữ liệu";
+                                }
+                                wp_reset_postdata();
+                            ?>
                             
                         </div>
-                        <div class="misha_loadmore btn-danger btn btn-block">Xem thêm</div>
+                        <?php 
+                        if($countPosts > $posts_per_page)
+                        {
+                            ?>
+                             <div class="misha_loadmore h_handbook btn-danger btn btn-block">Xem thêm</div>
+                            <?php
+                        }
+                        ?>
+
+                       
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-4" style="height: auto !important; min-height: 0px !important;">
                         <div class="sidebar-wrap">

@@ -25,9 +25,9 @@ $(document).ready(function(){
         });
     });
 
-    // page news and entertainment
+    // load more  page news and entertainment
     $paged = 2;
-    $( ".misha_loadmore" ).click(function() {
+    $( ".h_news" ).click(function() {
         var category = $( "#category" ).val();
         $.ajax({
             type : "GET", 
@@ -50,6 +50,36 @@ $(document).ready(function(){
         });
         $paged ++;
     });
+
+    // load more page handbook
+    $page = 2;
+    $( ".h_handbook" ).click(function() {
+        var catSlug = $( "#category" ).val();
+        var catName = $( "#catName" ).val();
+
+        $.ajax({
+            type : "GET", 
+            dataType : "html", 
+            url : url_home+"/wp-admin/admin-ajax.php",
+            data : {
+                action: "handbook", 
+                catSlug:  catSlug,
+                catName:  catName,
+                paged: $page,
+            },
+            beforeSend: function(){
+                // $(".h-custom-header-col-md-4").remove();
+            },
+            success: function(response) {
+                $( "#h-custom-blog-wrap" ).append( response );
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+                 console.log( 'The following error occured: ' + textStatus, errorThrown );
+            }
+        });
+        $page ++;
+    });
+
 
     // page news and entertainment
     $( ".h-custom-search" ).click(function() {
@@ -75,33 +105,5 @@ $(document).ready(function(){
                  console.log( 'The following error occured: ' + textStatus, errorThrown );
             }
         });
-    });
-
-    // page handbook
-    $page = 2;
-    $( ".misha_loadmore" ).click(function() {
-        var catSlug = $( "#category" ).val();
-        var catName = $( "#catName" ).val();
-        $.ajax({
-            type : "GET", 
-            dataType : "html", 
-            url : url_home+"/wp-admin/admin-ajax.php",
-            data : {
-                action: "handbook", 
-                catSlug:  catSlug,
-                catName:  catName,
-                paged: $page,
-            },
-            beforeSend: function(){
-                // $(".h-custom-header-col-md-4").remove();
-            },
-            success: function(response) {
-                $( "#h-custom-blog-wrap" ).append( response );
-            },
-            error: function( jqXHR, textStatus, errorThrown ){
-                 console.log( 'The following error occured: ' + textStatus, errorThrown );
-            }
-        });
-        $page ++;
     });
 });

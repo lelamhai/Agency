@@ -63,6 +63,15 @@
 
             </div>
         </div>
-        <div class="misha_loadmore btn-danger btn btn-block">Còn nhiều địa điểm Hot nữa - Click nào</div>
+        
+        <?php
+              if($countPosts > $posts_per_page)
+              {
+                  ?>
+                    <div class="misha_loadmore h_news btn-danger btn btn-block">Còn nhiều địa điểm Hot nữa - Click nào</div>
+                  <?php
+              }
+        ?>
+
     </div>
 </div>

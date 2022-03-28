@@ -1,5 +1,6 @@
 <?php
 get_header();
+$posts_per_page = 24;
 $category = get_the_category();
 $args = array(
     'post_type' => 'post',
@@ -8,6 +9,7 @@ $args = array(
     'posts_per_page' => 24,
 );  
 $the_query = new WP_Query( $args );
+$countPosts = $the_query->post_count;
 ?>
 <input id="category" type="hidden" value="<?php echo $category[0]->slug ?>">
 <?php 

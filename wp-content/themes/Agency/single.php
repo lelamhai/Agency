@@ -87,11 +87,11 @@ get_header();
                                                                         if($list != 0 || $index != $last)
                                                                         {
                                                                             ?>
-                                                                                <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a><span class="comma">,</span>
+                                                                                <a href="<?php echo get_home_url()."/danh-muc/".$term->slug?>" rel="tag"><?php echo $term->name?></a><span class="comma">,</span>
                                                                             <?php
                                                                         } else {
                                                                             ?>
-                                                                                <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a>
+                                                                                <a href="<?php echo get_home_url()."/danh-muc/".$term->slug?>" rel="tag"><?php echo $term->name?></a>
                                                                             <?php
                                                                                 }
                                                                             $index ++;
@@ -116,11 +116,11 @@ get_header();
                                                                                 if($list != 0 || $index != $last)
                                                                                 {
                                                                                     ?>
-                                                                                        <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a><span class="comma">,</span>
+                                                                                        <a href="<?php echo get_home_url()."/khu-vuc/".$term->slug?>" rel="tag"><?php echo $term->name?></a><span class="comma">,</span>
                                                                                     <?php
                                                                                 } else {
                                                                                     ?>
-                                                                                        <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a>
+                                                                                        <a href="<?php echo get_home_url()."/khu-vuc/".$term->slug?>" rel="tag"><?php echo $term->name?></a>
                                                                                     <?php
                                                                                 }
                                                                                 $index ++;
@@ -134,6 +134,7 @@ get_header();
                                                             <div class="col-12 col-md-12">
                                                                 <span class="d-block"> <i class="fas fa-tags"></i> <strong>Thể loại:</strong>
                                                                     <?php
+
                                                                         if($termsTags)
                                                                         {
                                                                             $last = count($termsTags) - 1;
@@ -144,11 +145,11 @@ get_header();
                                                                                 if($list != 0 || $index != $last)
                                                                                 {
                                                                                     ?>
-                                                                                        <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a><span class="comma">,</span>
+                                                                                        <a href="<?php echo get_home_url()."/the-loai/".$term->slug?>" rel="tag"><?php echo $term->name?></a><span class="comma">,</span>
                                                                                     <?php
                                                                                 } else {
                                                                                     ?>
-                                                                                        <a href="<?php echo get_home_url()."/".$term->slug?>" rel="tag"><?php echo $term->name?></a>
+                                                                                        <a href="<?php echo get_home_url()."/the-loai/".$term->slug?>" rel="tag"><?php echo $term->name?></a>
                                                                                     <?php
                                                                                 }
                                                                                 $index ++;
